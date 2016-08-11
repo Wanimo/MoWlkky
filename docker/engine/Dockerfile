@@ -6,4 +6,6 @@ RUN apt-get update && \
 RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
 
-WORKDIR /app
+ENV PATH "/docker/vendor/bin:$PATH"
+
+WORKDIR /docker

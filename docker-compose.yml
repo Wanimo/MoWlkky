@@ -8,14 +8,21 @@ db:
         - "MYSQL_PASSWORD=mowlkky_dev"
         - "MYSQL_DATABASE=mowlkky"
 
+
+composer:
+    image: composer/composer
+    working_dir: "/docker"
+    volumes:
+        - ".:/docker"
+
 engine:
     build: ./docker/engine/
     volumes:
-        - ".:/app"
-        - "./docker/engine/php-fpm.conf:/etc/php-fpm.conf"
+        - ".:/docker"
+        - "./docker/engine/php.ini:/usr/local/etc/php/conf.d/custom.ini:ro"
     links:
         - "db:db"
-    working_dir: "/app"
+    working_dir: "/docker"
 
 front:
     image: nginx
@@ -24,5 +31,5 @@ front:
     links:
         - "engine:engine"
     volumes:
-        - ".:/app"
+        - ".:/docker"
         - "./docker/front/symfony3.conf:/etc/nginx/conf.d/symfony3.conf"
