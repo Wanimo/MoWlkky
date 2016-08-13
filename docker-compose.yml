@@ -15,6 +15,12 @@ composer:
     volumes:
         - ".:/docker"
 
+front-tools:
+    image: digitallyseamless/nodejs-bower-grunt
+    working_dir: "/docker"
+    volumes:
+        - ".:/docker"
+
 engine:
     build: ./docker/engine/
     volumes:
