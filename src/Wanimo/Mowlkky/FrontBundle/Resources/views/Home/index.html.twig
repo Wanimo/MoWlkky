@@ -1,5 +1,11 @@
 {% extends 'FrontBundle::base.html.twig' %}
 
 {% block body %}
-<h1>{{ 'front.home.title'|trans() }}</h1>
+<div class="jumbotron">
+    <div class="container">
+        <h1>{{ 'front.home.title'|trans() }}</h1>
+        <p>{{ 'front.home.description'|trans() }}</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+</div>
 {% endblock %}

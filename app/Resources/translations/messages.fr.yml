@@ -1,1 +1,13 @@
-front.home.title: 'MoWlkky : organisez vos tournois de Molkky'
+common:
+    base:
+        header:
+            site_name: 'MoWlkky !'
+            admin_access: 'Accès administrateurs et arbitres'
+            signin: 'S''identifier'
+            login: 'Identifiant'
+            password: 'Mot de passe'
+
+front:
+    home:
+        title: 'MoWlkky'
+        description: 'Préparez, organisez, visualisez vos tournois de Molkky !'
