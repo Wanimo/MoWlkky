@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Gochi+Hand);
+
+@baseColor: #333333;
+@altColor: #B9D15E;
+
+@altFontFamily: 'Gochi Hand', cursive;
+
+body {
+  color: @baseColor;
+
+  .navbar {
+    .navbar-brand {
+      font-size: 2em;
+      font-family: @altFontFamily;
+    }
+
+    span {
+      color: @altColor;
+    }
+  }
+
+  h1 {
+    font-family: @altFontFamily;
+
+    span {
+      color: @altColor;
+    }
+  }
+}

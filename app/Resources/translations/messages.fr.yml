@@ -1,7 +1,7 @@
 common:
     base:
         header:
-            site_name: 'MoWlkky !'
+            site_name: 'Mo<span>W</span>lkky'
             admin_access: 'Accès administrateurs et arbitres'
             signin: 'S''identifier'
             login: 'Identifiant'
@@ -9,5 +9,5 @@ common:
 
 front:
     home:
-        title: 'MoWlkky'
+        title: 'Mo<span>W</span>lkky'
         description: 'Préparez, organisez, visualisez vos tournois de Molkky !'
