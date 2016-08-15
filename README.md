@@ -43,6 +43,13 @@ You must now install the front end vendors libraries with Bower :
 docker-compose run front-tools bower install
 ```
 
+Install NPM and launch Grunt for assets management :
+
+```
+docker-compose run front-tools npm install
+docker-compose run front-tools grunt
+```
+
 That's it ! You're ready to go ! :)
 
 ## Unit testing
