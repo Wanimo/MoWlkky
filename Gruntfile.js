@@ -4,16 +4,14 @@ module.exports = function(grunt) {
 
     // Configuration des plugins
     grunt.initConfig({
-        less: {
+        sass: {
             dist: {
                 options: {
-                    compress: true,
-                    yuicompress: true,
-                    optimization: 2
+                    style: 'compressed'
                 },
                 files: {
                     "web/assets/compiled/css/main.css": [
-                        "app/Resources/less/main.less"
+                        "app/Resources/css/main.scss"
                     ]
                 }
             }
@@ -31,10 +29,10 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: [
-                    'app/Resources/less/*.less',
+                    'app/Resources/css/*.scss',
                     'app/Resources/javascript/*.js'
                 ],
-                tasks: ['less', 'babel']
+                tasks: ['sass', 'babel']
             }
         }
     });
