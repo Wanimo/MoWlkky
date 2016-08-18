@@ -25,9 +25,6 @@
 # Assets managed by Bower
 /web/assets/vendor/
 
-# Compiled assets
-/web/assets/compiled
-
 # PHPUnit
 /app/phpunit.xml
 /phpunit.xml
