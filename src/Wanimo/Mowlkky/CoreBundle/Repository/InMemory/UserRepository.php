@@ -23,7 +23,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function __construct()
     {
-        $this->users = array();
+        $this->users = [];
     }
 
     /**

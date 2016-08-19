@@ -5,7 +5,7 @@ namespace Wanimo\Mowlkky\CoreDomain\User;
 /**
  * Collection for User entities
  */
-class UserCollection
+class UserCollection extends \ArrayObject
 {
     /**
      * @var User[]
@@ -16,7 +16,7 @@ class UserCollection
      * UserCollection constructor.
      * @param array $users
      */
-    public function __construct(array $users = array())
+    public function __construct(array $users = [])
     {
         foreach ($this->users as $user) {
             $this->addUser($user);

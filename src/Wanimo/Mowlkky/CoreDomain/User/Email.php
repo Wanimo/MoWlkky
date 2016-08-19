@@ -1,6 +1,7 @@
 <?php
 
 namespace Wanimo\Mowlkky\CoreDomain\User;
+use InvalidArgumentException;
 
 /**
  * Email value object
@@ -18,6 +19,10 @@ final class Email
      */
     public function __construct($value)
     {
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidArgumentException(sprintf('"%s" is not a valid email', $value));
+        }
+
         $this->value = $value;
     }
 

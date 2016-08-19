@@ -1,6 +1,8 @@
 <?php
 
-namespace Wanimo\Mowlkky\CoreDomain;
+namespace Wanimo\Mowlkky\CoreDomain\Event;
+
+use Wanimo\Mowlkky\CoreDomain\AggregateId;
 
 interface DomainEvent
 {

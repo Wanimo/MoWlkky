@@ -2,6 +2,9 @@
 
 namespace Wanimo\Mowlkky\CoreDomain;
 
+use Wanimo\Mowlkky\CoreDomain\Event\DomainEvent;
+use Wanimo\Mowlkky\CoreDomain\Event\DomainEvents;
+
 /**
  * Base class for all aggregates.
  */
@@ -10,7 +13,7 @@ abstract class AggregateRoot
     /**
      * @var DomainEvent[]
      */
-    private $unpublishedEvents = array();
+    private $unpublishedEvents = [];
 
     /**
      * @param DomainEvent $event
@@ -36,7 +39,7 @@ abstract class AggregateRoot
      */
     public function clearRecordedEvents()
     {
-        $this->unpublishedEvents = array();
+        $this->unpublishedEvents = [];
 
         return $this;
     }
