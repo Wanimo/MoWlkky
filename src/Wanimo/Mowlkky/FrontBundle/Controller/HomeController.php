@@ -3,7 +3,6 @@
 namespace Wanimo\Mowlkky\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class HomeController
@@ -14,10 +13,9 @@ class HomeController extends Controller
     /**
      * Home page of the front office.
      *
-     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         // replace this example code with whatever you need
         return $this->render('FrontBundle:Home:index.html.twig', []);
