@@ -52,6 +52,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($userId, $user->getId()->getValue());
 
         $this->assertCount(1, $user->getRecordedEvents());
-        $this->assertInstanceOf(UserWasRegistered::class, $user->getRecordedEvents()->get(0));
+        $this->assertInstanceOf(UserWasRegistered::class, $user->getRecordedEvents()[0]);
     }
 }
