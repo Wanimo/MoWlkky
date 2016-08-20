@@ -13,6 +13,10 @@ class HomeControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('MoWlkky : organisez vos tournois de Molkky', $crawler->filter('body h1')->text());
+        $this->assertContains('Mo<span>W</span>lkky', $crawler->filter('body h1')->html());
+        $this->assertContains(
+            'Préparez, organisez, visualisez vos tournois de Molkky !',
+            $crawler->filter('.jumbotron .container p')->text()
+        );
     }
 }
