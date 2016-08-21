@@ -5,11 +5,6 @@ namespace Wanimo\Mowlkky\CoreDomain\User;
 class RegisterUserCommand
 {
     /**
-     * @var UserRepository
-     */
-    private $userRepository;
-
-    /**
      * @var UserId
      */
     private $userId;
@@ -43,11 +38,6 @@ class RegisterUserCommand
      * @var string
      */
     private $lastName;
-
-    public function __construct(UserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
 
     /**
      * @return UserId

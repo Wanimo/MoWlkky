@@ -16,17 +16,23 @@ interface UserRepository
     /**
      * @return UserCollection
      */
-    public function findAll();
+    public function findAll(): UserCollection;
+
+    /**
+     * @param Email $email
+     * @return User
+     */
+    public function findOneByEmail(Email $email);
 
     /**
      * @param User $user
-     * @return $this
+     * @return UserRepository
      */
-    public function add(User $user);
+    public function add(User $user): UserRepository;
 
     /**
      * @param User $user
-     * @return $this
+     * @return UserRepository
      */
-    public function remove(User $user);
+    public function remove(User $user): UserRepository;
 }

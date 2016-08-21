@@ -2,6 +2,7 @@
 
 namespace Wanimo\Mowlkky\CoreBundle\Repository\InMemory;
 
+use Wanimo\Mowlkky\CoreDomain\User\Email;
 use Wanimo\Mowlkky\CoreDomain\User\User;
 use Wanimo\Mowlkky\CoreDomain\User\UserCollection;
 use Wanimo\Mowlkky\CoreDomain\User\UserId;
@@ -14,7 +15,7 @@ use Wanimo\Mowlkky\CoreDomain\User\UserRepository as UserRepositoryInterface;
 class UserRepository implements UserRepositoryInterface
 {
     /**
-     * @var array
+     * @var User[]
      */
     private $users;
 
@@ -44,7 +45,7 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @return UserCollection
      */
-    public function findAll()
+    public function findAll(): UserCollection
     {
         return new UserCollection($this->users);
     }
@@ -53,7 +54,7 @@ class UserRepository implements UserRepositoryInterface
      * @param User $user
      * @return UserRepositoryInterface
      */
-    public function add(User $user)
+    public function add(User $user): UserRepositoryInterface
     {
         $this->users[$user->getId()->getValue()] = $user;
 
@@ -64,7 +65,7 @@ class UserRepository implements UserRepositoryInterface
      * @param User $user
      * @return UserRepositoryInterface
      */
-    public function remove(User $user)
+    public function remove(User $user): UserRepositoryInterface
     {
         $userId = $user->getId();
 
@@ -80,5 +81,20 @@ class UserRepository implements UserRepositoryInterface
     protected function has(UserId $id)
     {
         return array_key_exists($id->getValue(), $this->users);
+    }
+
+    /**
+     * @param Email $email
+     * @return User|null
+     */
+    public function findOneByEmail(Email $email)
+    {
+        foreach ($this->users as $user) {
+            if ($user->getEmail() == $email) {
+                return $user;
+            }
+        }
+
+        return null;
     }
 }
