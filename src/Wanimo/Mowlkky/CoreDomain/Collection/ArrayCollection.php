@@ -12,12 +12,12 @@ use Traversable;
 abstract class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 {
     /**
-     * Get the concrete collection elements.
+     * Collection elements
      *
      * @return array
      */
-    protected abstract function & getElements(): array;
-
+    protected $elements;
+    
     /**
      * Check if a new element added to the collection is of the right type.
      *
@@ -37,7 +37,7 @@ abstract class ArrayCollection implements Countable, IteratorAggregate, ArrayAcc
      */
     public function count()
     {
-        return count($this->getElements());
+        return count($this->elements);
     }
 
     /**
@@ -49,7 +49,7 @@ abstract class ArrayCollection implements Countable, IteratorAggregate, ArrayAcc
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->getElements());
+        return new ArrayIterator($this->elements);
     }
 
     /**
@@ -66,7 +66,7 @@ abstract class ArrayCollection implements Countable, IteratorAggregate, ArrayAcc
      */
     public function offsetExists($offset)
     {
-        return in_array($offset, $this->getElements());
+        return in_array($offset, $this->elements);
     }
 
     /**
@@ -80,7 +80,7 @@ abstract class ArrayCollection implements Countable, IteratorAggregate, ArrayAcc
      */
     public function offsetGet($offset)
     {
-        return $this->getElements()[$offset];
+        return $this->elements[$offset];
     }
 
     /**
@@ -101,7 +101,7 @@ abstract class ArrayCollection implements Countable, IteratorAggregate, ArrayAcc
             throw new InvalidArgumentException(sprintf('Element added to %s is not of the right type.', get_class($this)));
         }
 
-        $this->getElements()[$offset] = $value;
+        $this->elements[$offset] = $value;
     }
 
     /**
@@ -115,6 +115,6 @@ abstract class ArrayCollection implements Countable, IteratorAggregate, ArrayAcc
      */
     public function offsetUnset($offset)
     {
-        unset($this->getElements()[$offset]);
+        unset($this->elements[$offset]);
     }
 }

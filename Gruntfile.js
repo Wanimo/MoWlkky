@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
-    // Chargement automatique de tous nos modules
+    // Autoload of all modules
     require('load-grunt-tasks')(grunt);
 
-    // Configuration des plugins
+    // Plugins configuration
     grunt.initConfig({
         sass: {
             dist: {

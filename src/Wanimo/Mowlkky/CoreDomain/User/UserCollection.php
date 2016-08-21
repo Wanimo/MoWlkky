@@ -1,24 +1,20 @@
 <?php
 
 namespace Wanimo\Mowlkky\CoreDomain\User;
+use Wanimo\Mowlkky\CoreDomain\Collection\ArrayCollection;
 
 /**
  * Collection for User entities
  */
-class UserCollection extends \ArrayObject
+class UserCollection extends ArrayCollection
 {
-    /**
-     * @var User[]
-     */
-    private $users;
-
     /**
      * UserCollection constructor.
      * @param array $users
      */
     public function __construct(array $users = [])
     {
-        foreach ($this->users as $user) {
+        foreach ($this->elements as $user) {
             $this->addUser($user);
         }
     }
@@ -29,8 +25,19 @@ class UserCollection extends \ArrayObject
      */
     public function addUser(User $user)
     {
-        $this->users = $user;
+        $this->elements = $user;
 
         return $this;
+    }
+
+    /**
+     * Check if a new element added to the collection is of the right type.
+     *
+     * @param mixed $element
+     * @return bool
+     */
+    protected function checkNewElementType($element): bool
+    {
+        return $element instanceof User;
     }
 }

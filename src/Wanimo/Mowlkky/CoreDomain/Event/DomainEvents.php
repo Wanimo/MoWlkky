@@ -10,17 +10,12 @@ use Wanimo\Mowlkky\CoreDomain\Collection\ArrayCollection;
 class DomainEvents extends ArrayCollection
 {
     /**
-     * @var DomainEvent[]
-     */
-    private $events;
-
-    /**
      * DomainEvents constructor.
      * @param DomainEvent[] $events
      */
     public function __construct(array $events)
     {
-        $this->events = array();
+        $this->elements = array();
 
         foreach ($events as $event) {
             $this->addEvent($event);
@@ -33,19 +28,9 @@ class DomainEvents extends ArrayCollection
      */
     public function addEvent(DomainEvent $event): DomainEvents
     {
-        $this->events[] = $event;
+        $this->elements[] = $event;
 
         return $this;
-    }
-
-    /**
-     * Get the concrete collection elements.
-     *
-     * @return array
-     */
-    protected function & getElements(): array
-    {
-        return $this->events;
     }
 
     /**
