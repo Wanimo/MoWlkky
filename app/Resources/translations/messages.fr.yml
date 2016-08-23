@@ -1,0 +1,13 @@
+common:
+    base:
+        header:
+            site_name: 'Mo<span>W</span>lkky'
+            admin_access: 'Accès administrateurs et arbitres'
+            signin: 'S''identifier'
+            login: 'Identifiant'
+            password: 'Mot de passe'
+
+front:
+    home:
+        title: 'Mo<span>W</span>lkky'
+        description: 'Préparez, organisez, visualisez vos tournois de Molkky !'

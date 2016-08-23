@@ -1,0 +1,41 @@
+db:
+    image: mysql:5.7
+    ports:
+        - "3306:3306"
+    environment:
+        - "MYSQL_ROOT_PASSWORD=m0WlI<I<y"
+        - "MYSQL_USER=dev"
+        - "MYSQL_PASSWORD=mowlkky_dev"
+        - "MYSQL_DATABASE=mowlkky"
+
+
+composer:
+    image: composer/composer
+    working_dir: "/docker"
+    volumes:
+        - ".:/docker"
+
+front-tools:
+    image: digitallyseamless/nodejs-bower-grunt
+    working_dir: "/docker"
+    volumes:
+        - ".:/docker"
+
+engine:
+    build: ./docker/engine/
+    volumes:
+        - ".:/docker"
+        - "./docker/engine/php.ini:/usr/local/etc/php/conf.d/custom.ini:ro"
+    links:
+        - "db:db"
+    working_dir: "/docker"
+
+front:
+    image: nginx
+    ports:
+        - "8080:80"
+    links:
+        - "engine:engine"
+    volumes:
+        - ".:/docker"
+        - "./docker/front/symfony3.conf:/etc/nginx/conf.d/symfony3.conf"
