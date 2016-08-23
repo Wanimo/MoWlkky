@@ -98,7 +98,7 @@ abstract class ArrayCollection implements Countable, IteratorAggregate, ArrayAcc
     public function offsetSet($offset, $value)
     {
         if (!$this->checkNewElementType($value)) {
-            throw new InvalidArgumentException(sprintf('Element added to %s is not of the right type.', get_class($this)));
+            throw new InvalidArgumentException(sprintf('Element added to %s is not of the right type.', self::class));
         }
 
         $this->elements[$offset] = $value;

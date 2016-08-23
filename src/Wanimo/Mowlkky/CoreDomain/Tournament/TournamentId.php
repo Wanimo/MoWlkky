@@ -1,13 +1,13 @@
 <?php
 
-namespace Wanimo\Mowlkky\CoreDomain\User;
+namespace Wanimo\Mowlkky\CoreDomain\Tournament;
 
 use Wanimo\Mowlkky\CoreDomain\AggregateId;
 
 /**
- * User identification type.
+ * Tournament identification type.
  */
-class UserId implements AggregateId
+class TournamentId implements AggregateId
 {
     /**
      * @var mixed
@@ -15,7 +15,7 @@ class UserId implements AggregateId
     private $value;
 
     /**
-     * UserId constructor.
+     * TournamentId constructor.
      * @param mixed $value
      */
     public function __construct($value)
@@ -32,9 +32,9 @@ class UserId implements AggregateId
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function __toString(): string
+    public function __toString()
     {
         return $this->getValue();
     }
