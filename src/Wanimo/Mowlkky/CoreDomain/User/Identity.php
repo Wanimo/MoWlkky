@@ -4,6 +4,9 @@ namespace Wanimo\Mowlkky\CoreDomain\User;
 
 use InvalidArgumentException;
 
+/**
+ * Value object for a user identity.
+ */
 final class Identity
 {
     /**

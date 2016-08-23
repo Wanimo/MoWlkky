@@ -31,7 +31,7 @@ class IdentityTest extends \PHPUnit_Framework_TestCase
     /**
      * @param string $firstName
      * @param string $lastName
-     * @return \Exception|InvalidArgumentException|null
+     * @return InvalidArgumentException|null
      */
     private function newAndCatchException(string $firstName, string $lastName)
     {
