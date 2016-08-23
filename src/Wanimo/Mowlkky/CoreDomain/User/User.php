@@ -20,14 +20,9 @@ class User extends AggregateRoot
     protected $email;
 
     /**
-     * @var string
+     * @var Identity
      */
-    protected $firstName;
-
-    /**
-     * @var string
-     */
-    protected $lastName;
+    protected $identity;
 
     /**
      * @var Security
@@ -80,19 +75,11 @@ class User extends AggregateRoot
     }
 
     /**
-     * @return string
+     * @return Identity
      */
-    public function getFirstName(): string
+    public function getIdentity(): Identity
     {
-        return $this->firstName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->lastName;
+        return $this->identity;
     }
 
     /**
@@ -145,8 +132,7 @@ class User extends AggregateRoot
 
         $user->id = $command->getUserId();
         $user->email = $command->getEmail();
-        $user->firstName = $command->getFirstName();
-        $user->lastName = $command->getLastName();
+        $user->identity = $command->getIdentity();
         $user->securityKeys = $command->getSecurityKeys();
         $user->role = $command->getRole();
 

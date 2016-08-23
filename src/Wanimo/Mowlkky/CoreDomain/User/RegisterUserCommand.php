@@ -72,19 +72,11 @@ class RegisterUserCommand
     }
 
     /**
-     * @return string
+     * @return Identity
      */
-    public function getFirstName(): string
+    public function getIdentity(): Identity
     {
-        return $this->firstName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->lastName;
+        return new Identity($this->firstName, $this->lastName);
     }
 
     /**

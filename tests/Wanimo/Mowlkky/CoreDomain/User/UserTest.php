@@ -35,8 +35,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(User::class, $user);
 
-        $this->assertEquals($testData['firstName'], $user->getFirstName());
-        $this->assertEquals($testData['lastName'], $user->getLastName());
+        $this->assertEquals($testData['firstName'], $user->getIdentity()->getFirstName());
+        $this->assertEquals($testData['lastName'], $user->getIdentity()->getLastName());
 
         $this->assertInstanceOf(Email::class, $user->getEmail());
         $this->assertEquals($testData['email'], $user->getEmail()->getValue());
