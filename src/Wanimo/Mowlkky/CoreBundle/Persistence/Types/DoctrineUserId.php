@@ -1,6 +1,6 @@
 <?php
 
-namespace Wanimo\Mowlkky\CoreBundle\ORM\Types;
+namespace Wanimo\Mowlkky\CoreBundle\Persistence\Types;
 use Wanimo\Mowlkky\CoreDomain\User\UserId;
 
 /**

@@ -2,6 +2,8 @@
 
 namespace Wanimo\Mowlkky\CoreBundle\Repository\Doctrine;
 
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Wanimo\Mowlkky\CoreDomain\User\Email;
 use Wanimo\Mowlkky\CoreDomain\User\User;
 use Wanimo\Mowlkky\CoreDomain\User\UserCollection;
@@ -13,6 +15,25 @@ use Wanimo\Mowlkky\CoreDomain\User\UserRepository as UserRepositoryInterface;
  */
 class UserRepository implements UserRepositoryInterface
 {
+    /**
+     * @var ObjectRepository
+     */
+    private $source;
+
+    /**
+     * @var ObjectManager
+     */
+    private $objectManager;
+
+    /**
+     * UserRepository constructor.
+     * @param ObjectManager $om
+     */
+    public function __construct(ObjectManager $om)
+    {
+        $this->objectManager = $om;
+        $this->source = $om->getRepository(User::class);
+    }
 
     /**
      * @param UserId $userId
@@ -20,7 +41,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function find(UserId $userId)
     {
-        // TODO: Implement find() method.
+        return $this->source->find($userId);
     }
 
     /**
@@ -28,7 +49,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function findAll(): UserCollection
     {
-        // TODO: Implement findAll() method.
+        return new UserCollection($this->source->findAll());
     }
 
     /**
@@ -37,7 +58,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function findOneByEmail(Email $email)
     {
-        // TODO: Implement findOneByEmail() method.
+        return $this->source->findOneBy(['email' => $email]);
     }
 
     /**
@@ -46,7 +67,9 @@ class UserRepository implements UserRepositoryInterface
      */
     public function add(User $user): UserRepositoryInterface
     {
-        // TODO: Implement add() method.
+        $this->objectManager->persist($user);
+
+        return $this;
     }
 
     /**
@@ -55,6 +78,8 @@ class UserRepository implements UserRepositoryInterface
      */
     public function remove(User $user): UserRepositoryInterface
     {
-        // TODO: Implement remove() method.
+        $this->objectManager->remove($user);
+
+        return $this;
     }
 }

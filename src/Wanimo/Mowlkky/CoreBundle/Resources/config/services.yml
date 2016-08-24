@@ -1,0 +1,11 @@
+parameters:
+    mowlkky.uow.class: Wanimo\Mowlkky\CoreBundle\Persistence\DoctrineUnitOfWork
+    mowlkky.repository.user.class:  Wanimo\Mowlkky\CoreDomain\User\User
+
+services:
+    mowlkky.repository.user:
+        class:        '%mowlkky.repository.user.class%'
+        arguments:    ['@doctrine.orm.default_entity_manager']
+    mowlkky.uow:
+        class:        '%mowlkky.uow.class%'
+        arguments:    ['@doctrine.orm.default_entity_manager']

@@ -8,7 +8,7 @@ Wanimo\Mowlkky\CoreDomain\User\User:
         id:
             column: id
             type: user_id
-            
+
     fields:
         lastConnectionDate:
             type: datetimetz

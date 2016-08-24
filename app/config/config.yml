@@ -49,7 +49,7 @@ doctrine:
         charset:  utf8mb4
         types:
             user_id:
-                class: Wanimo\Mowlkky\CoreBundle\ORM\Types\DoctrineUserId
+                class: Wanimo\Mowlkky\CoreBundle\Persistence\Types\DoctrineUserId
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
