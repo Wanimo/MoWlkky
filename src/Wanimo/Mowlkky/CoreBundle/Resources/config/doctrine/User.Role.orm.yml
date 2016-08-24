@@ -1,0 +1,8 @@
+Wanimo\Mowlkky\CoreDomain\User\Role:
+    type: embeddable
+    fields:
+        value:
+            column: role
+            type: string
+            nullable: false
+            length: 10
