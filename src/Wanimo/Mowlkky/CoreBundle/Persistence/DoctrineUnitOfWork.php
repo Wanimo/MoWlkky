@@ -29,6 +29,8 @@ class DoctrineUnitOfWork implements UnitOfWork
      */
     public function commit(): UnitOfWork
     {
+        // TODO : handle DomainEvents somewhere here.
+
         $this->objectManager->flush();
 
         return $this;

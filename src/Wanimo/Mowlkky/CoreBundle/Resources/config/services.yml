@@ -1,6 +1,6 @@
 parameters:
     mowlkky.uow.class: Wanimo\Mowlkky\CoreBundle\Persistence\DoctrineUnitOfWork
-    mowlkky.repository.user.class:  Wanimo\Mowlkky\CoreDomain\User\User
+    mowlkky.repository.user.class:  Wanimo\Mowlkky\CoreBundle\Repository\Doctrine\UserRepository
 
 services:
     mowlkky.repository.user:

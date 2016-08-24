@@ -58,7 +58,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function findOneByEmail(Email $email)
     {
-        return $this->source->findOneBy(['email' => $email]);
+        return $this->source->findOneBy(['email.value' => $email->getValue()]);
     }
 
     /**
