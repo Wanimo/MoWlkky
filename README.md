@@ -1,5 +1,7 @@
 # MoWlkky
 
+[![Build Status](https://travis-ci.org/Wanimo/MoWlkky.svg?branch=master)](https://travis-ci.org/Wanimo/MoWlkky)
+
 Create and organize Molkky game tournaments with MoWlkky.
 
 ## Status
