@@ -37,7 +37,7 @@ rm -rf var/cache
 rm -rf var/logs
 ```
 
-And let Symfony create it for you with the right permissions via an HTTP request : [your home page](http://127.0.0.1:8080) .
+And let Symfony create it for you with the right permissions via an HTTP request : [your home page](http://127.0.0.1:8080/app_dev.php) .
 
 You must now install the front end vendors libraries with Bower :
 
