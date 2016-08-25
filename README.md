@@ -37,7 +37,7 @@ rm -rf var/cache
 rm -rf var/logs
 ```
 
-And let Symfony create it for you with the right permissions via an HTTP request : [your home page](127.0.0.1:8080) .
+And let Symfony create it for you with the right permissions via an HTTP request : [your home page](http://127.0.0.1:8080) .
 
 You must now install the front end vendors libraries with Bower :
 
@@ -52,7 +52,7 @@ docker-compose run front-tools npm install
 docker-compose run front-tools grunt
 ```
 
-That's it ! You're ready to go ! :)
+That's it ! You're ready to [go](http://127.0.0.1:8080/app_dev.php) ! :)
 
 ## Unit testing
 
