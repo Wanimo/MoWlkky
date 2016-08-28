@@ -2,6 +2,8 @@
 
 namespace Wanimo\Mowlkky\CoreDomain\User;
 
+use Wanimo\Mowlkky\CoreDomain\User\Password\RawPassword;
+
 class RegisterUserCommand
 {
     /**
@@ -23,11 +25,6 @@ class RegisterUserCommand
      * @var string
      */
     private $role;
-
-    /**
-     * @var string
-     */
-    private $salt;
 
     /**
      * @var string
@@ -56,11 +53,11 @@ class RegisterUserCommand
     }
 
     /**
-     * @return Security
+     * @return RawPassword
      */
-    public function getSecurityKeys(): Security
+    public function getRawPassword(): RawPassword
     {
-        return new Security($this->password, $this->salt);
+        return new RawPassword($this->password);
     }
 
     /**
@@ -105,20 +102,9 @@ class RegisterUserCommand
      * @param string $password
      * @return RegisterUserCommand
      */
-    public function withPassword(string $password): RegisterUserCommand
+    public function withRawPassword(string $password): RegisterUserCommand
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @param string $salt
-     * @return RegisterUserCommand
-     */
-    public function withSalt(string $salt): RegisterUserCommand
-    {
-        $this->salt = $salt;
 
         return $this;
     }
