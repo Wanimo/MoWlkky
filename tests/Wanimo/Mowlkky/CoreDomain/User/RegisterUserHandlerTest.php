@@ -20,8 +20,9 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
     {
         $faker = Faker\Factory::create();
         $repository = new UserRepository();
+        $encoder = new FakePasswordEncoder();
 
-        $handler = new RegisterUserHandler($repository);
+        $handler = new RegisterUserHandler($repository, $encoder);
 
         $user = $handler->handle(
             RegisterUserCommandTest::createStandardTestInstance(['email' => $email = $faker->email])

@@ -4,8 +4,9 @@ namespace Tests\Wanimo\Mowlkky\CoreDomain\User;
 
 use Wanimo\Mowlkky\CoreDomain\User\Email;
 use Wanimo\Mowlkky\CoreDomain\User\Event\UserWasRegistered;
+use Wanimo\Mowlkky\CoreDomain\User\Password\EncodedPassword;
+use Wanimo\Mowlkky\CoreDomain\User\Password\PasswordEncoder;
 use Wanimo\Mowlkky\CoreDomain\User\Role;
-use Wanimo\Mowlkky\CoreDomain\User\Security;
 use Wanimo\Mowlkky\CoreDomain\User\User;
 use Wanimo\Mowlkky\CoreDomain\User\UserId;
 use Faker;
@@ -31,7 +32,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
             'id' => $faker->uuid
         ];
 
-        $user = User::registerUser(RegisterUserCommandTest::createStandardTestInstance($testData));
+        $encoder = self::createPasswordEncoder($encodedPassword = $faker->sha1);
+        $user = User::registerUser(RegisterUserCommandTest::createStandardTestInstance($testData), $encoder);
 
         $this->assertInstanceOf(User::class, $user);
 
@@ -44,9 +46,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Role::class, $user->getRole());
         $this->assertEquals($testData['role'], $user->getRole()->getValue());
 
-        $this->assertInstanceOf(Security::class, $user->getSecurityKeys());
-        $this->assertEquals($testData['salt'], $user->getSecurityKeys()->getSalt());
-        $this->assertEquals($testData['password'], $user->getSecurityKeys()->getPassword());
+        $this->assertInstanceOf(EncodedPassword::class, $user->getPassword());
+        $this->assertEquals($encodedPassword, $user->getPassword()->getValue());
 
         $this->assertInstanceOf(UserId::class, $user->getId());
         $this->assertEquals($testData['id'], $user->getId()->getValue());
@@ -63,6 +64,19 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public static function createRandomTestInstance(array $testData = [])
     {
-        return User::registerUser(RegisterUserCommandTest::createStandardTestInstance($testData));
+        $encoder = self::createPasswordEncoder(
+            array_key_exists('encodedPassword', $testData) ? $testData['encodedPassword'] : null
+        );
+
+        return User::registerUser(RegisterUserCommandTest::createStandardTestInstance($testData), $encoder);
+    }
+
+    /**
+     * @param string $encodedPassword
+     * @return PasswordEncoder
+     */
+    protected static function createPasswordEncoder($encodedPassword = null): PasswordEncoder
+    {
+        return new FakePasswordEncoder($encodedPassword);
     }
 }

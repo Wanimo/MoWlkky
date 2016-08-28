@@ -1,6 +1,7 @@
 <?php
 
 namespace Wanimo\Mowlkky\CoreDomain\User;
+
 use InvalidArgumentException;
 
 /**

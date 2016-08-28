@@ -5,6 +5,8 @@ namespace Wanimo\Mowlkky\CoreDomain\User;
 use DateTime;
 use Wanimo\Mowlkky\CoreDomain\AggregateRoot;
 use Wanimo\Mowlkky\CoreDomain\User\Event\UserWasRegistered;
+use Wanimo\Mowlkky\CoreDomain\User\Password\EncodedPassword;
+use Wanimo\Mowlkky\CoreDomain\User\Password\PasswordEncoder;
 
 class User extends AggregateRoot
 {
@@ -25,9 +27,9 @@ class User extends AggregateRoot
     protected $identity;
 
     /**
-     * @var Security
+     * @var EncodedPassword
      */
-    protected $securityKeys;
+    protected $password;
 
     /**
      * @var Role
@@ -83,11 +85,11 @@ class User extends AggregateRoot
     }
 
     /**
-     * @return Security
+     * @return EncodedPassword
      */
-    public function getSecurityKeys(): Security
+    public function getPassword(): EncodedPassword
     {
-        return $this->securityKeys;
+        return $this->password;
     }
 
     /**
@@ -126,14 +128,14 @@ class User extends AggregateRoot
      * @param RegisterUserCommand $command
      * @return User
      */
-    public static function registerUser(RegisterUserCommand $command)
+    public static function registerUser(RegisterUserCommand $command, PasswordEncoder $encoder)
     {
         $user = new self;
 
         $user->id = $command->getUserId();
         $user->email = $command->getEmail();
         $user->identity = $command->getIdentity();
-        $user->securityKeys = $command->getSecurityKeys();
+        $user->password = $command->getRawPassword()->encode($encoder);
         $user->role = $command->getRole();
 
         $user->recordEvent(new UserWasRegistered($user));
