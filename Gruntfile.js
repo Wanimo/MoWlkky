@@ -29,10 +29,15 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: [
-                    'app/Resources/css/*.scss',
+                    'app/Resources/css/*.scss'
+                ],
+                tasks: ['sass']
+            },
+            js: {
+                files: [
                     'app/Resources/javascript/*.js'
                 ],
-                tasks: ['sass', 'babel']
+                tasks: ['babel']
             }
         }
     });
