@@ -28,8 +28,8 @@ Wanimo\Mowlkky\CoreDomain\User\User:
         identity:
             class: Wanimo\Mowlkky\CoreDomain\User\Identity
             columnPrefix: false
-        securityKeys:
-            class: Wanimo\Mowlkky\CoreDomain\User\Security
+        password:
+            class: Wanimo\Mowlkky\CoreDomain\User\Password\EncodedPassword
             columnPrefix: false
         role:
             class: Wanimo\Mowlkky\CoreDomain\User\Role
