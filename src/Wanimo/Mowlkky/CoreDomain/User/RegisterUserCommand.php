@@ -7,12 +7,7 @@ use Wanimo\Mowlkky\CoreDomain\User\Password\RawPassword;
 class RegisterUserCommand
 {
     /**
-     * @var UserId
-     */
-    private $userId;
-
-    /**
-     * @var Email
+     * @var string
      */
     private $email;
 
@@ -37,54 +32,43 @@ class RegisterUserCommand
     private $lastName;
 
     /**
-     * @return UserId
+     * @return string
      */
-    public function getUserId(): UserId
+    public function getEmail(): string
     {
-        return $this->userId;
+        return $this->email;
     }
 
     /**
-     * @return Email
+     * @return string
      */
-    public function getEmail(): Email
+    public function getPassword(): string
     {
-        return new Email($this->email);
+        return $this->password;
     }
 
     /**
-     * @return RawPassword
+     * @return string
      */
-    public function getRawPassword(): RawPassword
+    public function getRole(): string
     {
-        return new RawPassword($this->password);
+        return $this->role;
     }
 
     /**
-     * @return Role
+     * @return string
      */
-    public function getRole(): Role
+    public function getFirstName(): string
     {
-        return new Role($this->role);
+        return $this->firstName;
     }
 
     /**
-     * @return Identity
+     * @return string
      */
-    public function getIdentity(): Identity
+    public function getLastName(): string
     {
-        return new Identity($this->firstName, $this->lastName);
-    }
-
-    /**
-     * @param UserId $userId
-     * @return RegisterUserCommand
-     */
-    public function withUserId(UserId $userId): RegisterUserCommand
-    {
-        $this->userId = $userId;
-
-        return $this;
+        return $this->lastName;
     }
 
     /**

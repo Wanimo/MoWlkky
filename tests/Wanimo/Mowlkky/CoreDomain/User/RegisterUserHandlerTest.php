@@ -2,6 +2,7 @@
 
 namespace Tests\Wanimo\Mowlkky\CoreDomain\User;
 
+use Tests\Wanimo\Mowlkky\CoreDomain\FakeUuidGenerator;
 use Wanimo\Mowlkky\CoreBundle\Repository\InMemory\UserRepository;
 use Wanimo\Mowlkky\CoreDomain\User\NotUniqueEmailException;
 use Wanimo\Mowlkky\CoreDomain\User\RegisterUserHandler;
@@ -20,9 +21,10 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
     {
         $faker = Faker\Factory::create();
         $repository = new UserRepository();
+        $uuidGenerator = new FakeUuidGenerator();
         $encoder = new FakePasswordEncoder();
 
-        $handler = new RegisterUserHandler($repository, $encoder);
+        $handler = new RegisterUserHandler($repository, $uuidGenerator, $encoder);
 
         $user = $handler->handle(
             RegisterUserCommandTest::createStandardTestInstance(['email' => $email = $faker->email])
