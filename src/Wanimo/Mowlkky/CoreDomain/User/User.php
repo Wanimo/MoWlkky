@@ -1,0 +1,145 @@
+<?php
+
+namespace Wanimo\Mowlkky\CoreDomain\User;
+
+use DateTime;
+use Wanimo\Mowlkky\CoreDomain\AggregateRoot;
+use Wanimo\Mowlkky\CoreDomain\User\Event\UserWasRegistered;
+use Wanimo\Mowlkky\CoreDomain\User\Password\EncodedPassword;
+use Wanimo\Mowlkky\CoreDomain\User\Password\PasswordEncoder;
+
+class User extends AggregateRoot
+{
+    /**
+     * @var UserId
+     *
+     */
+    protected $id;
+
+    /**
+     * @var Email
+     */
+    protected $email;
+
+    /**
+     * @var Identity
+     */
+    protected $identity;
+
+    /**
+     * @var EncodedPassword
+     */
+    protected $password;
+
+    /**
+     * @var Role
+     */
+    protected $role;
+
+    /**
+     * @var DateTime
+     */
+    protected $registrationDate;
+
+    /**
+     * @var DateTime
+     */
+    protected $lastUpdateDate;
+
+    /**
+     * @var DateTime
+     */
+    protected $lastConnectionDate;
+
+    /**
+     * User constructor.
+     */
+    final private function __construct()
+    {
+        $this->registrationDate = new DateTime();
+        $this->lastUpdateDate = new DateTime();
+    }
+
+    /**
+     * @return UserId
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return Email
+     */
+    public function getEmail(): Email
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return Identity
+     */
+    public function getIdentity(): Identity
+    {
+        return $this->identity;
+    }
+
+    /**
+     * @return EncodedPassword
+     */
+    public function getPassword(): EncodedPassword
+    {
+        return $this->password;
+    }
+
+    /**
+     * @return Role
+     */
+    public function getRole(): Role
+    {
+        return $this->role;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getRegistrationDate(): DateTime
+    {
+        return $this->registrationDate;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getLastUpdateDate(): DateTime
+    {
+        return $this->lastUpdateDate;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getLastConnectionDate(): DateTime
+    {
+        return $this->lastConnectionDate;
+    }
+
+    /**
+     * @param RegisterUserCommand $command
+     * @return User
+     */
+    public static function registerUser(RegisterUserCommand $command, PasswordEncoder $encoder)
+    {
+        $user = new self;
+
+        $user->id = $command->getUserId();
+        $user->email = $command->getEmail();
+        $user->identity = $command->getIdentity();
+        $user->password = $command->getRawPassword()->encode($encoder);
+        $user->role = $command->getRole();
+
+        $user->recordEvent(new UserWasRegistered($user));
+
+        return $user;
+    }
+}

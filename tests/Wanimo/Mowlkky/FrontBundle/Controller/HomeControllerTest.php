@@ -1,6 +1,6 @@
 <?php
 
-namespace Wanimo\Mowlkky\FrontBundle\Controller;
+namespace Tests\Wanimo\Mowlkky\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
