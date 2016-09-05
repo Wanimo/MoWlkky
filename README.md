@@ -17,6 +17,8 @@ Clone the repository first :
 git clone https://github.com/Wanimo/MoWlkky.git
 ```
 
+Copy the ``/.env.dist`` file and create a ``/.env`` file with database parameters.
+
 Then build and start Docker to have an operational dev environment :
 
 ```

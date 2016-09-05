@@ -2,12 +2,7 @@ db:
     image: mysql:5.7
     ports:
         - "3306:3306"
-    environment:
-        - "MYSQL_ROOT_PASSWORD=m0WlI<I<y"
-        - "MYSQL_USER=dev"
-        - "MYSQL_PASSWORD=mowlkky_dev"
-        - "MYSQL_DATABASE=mowlkky"
-
+    env_file: .env
 
 composer:
     image: composer/composer
