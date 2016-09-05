@@ -28,10 +28,11 @@ final class RawPassword
 
     /**
      * @param PasswordEncoder $encoder
+     * @param string $salt
      * @return EncodedPassword
      */
-    public function encode(PasswordEncoder $encoder)
+    public function encode(PasswordEncoder $encoder, $salt)
     {
-        return $encoder->encode($this);
+        return $encoder->encode($this, $salt);
     }
 }

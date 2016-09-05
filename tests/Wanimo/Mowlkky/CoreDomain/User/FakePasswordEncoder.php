@@ -33,10 +33,11 @@ class FakePasswordEncoder implements PasswordEncoder
 
     /**
      * @param RawPassword $password
+     * @param string $salt
      * @return EncodedPassword
      */
-    public function encode(RawPassword $password): EncodedPassword
+    public function encode(RawPassword $password, string $salt): EncodedPassword
     {
-        return new EncodedPassword($this->encodedPasswordValue);
+        return new EncodedPassword($this->encodedPasswordValue, $salt);
     }
 }

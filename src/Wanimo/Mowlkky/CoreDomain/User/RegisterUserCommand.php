@@ -2,9 +2,16 @@
 
 namespace Wanimo\Mowlkky\CoreDomain\User;
 
-use Wanimo\Mowlkky\CoreDomain\User\Password\RawPassword;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class RegisterUserCommand
+use Wanimo\Mowlkky\CoreDomain\Command\Command;
+use Wanimo\Mowlkky\CoreDomain\Validation\ConstraintsCollection;
+use Wanimo\Mowlkky\CoreDomain\Validation\Validatable;
+
+/**
+ * Command used to register a new user.
+ */
+class RegisterUserCommand implements Command, Validatable
 {
     /**
      * @var string
@@ -124,5 +131,53 @@ class RegisterUserCommand
         $this->lastName = $lastName;
 
         return $this;
+    }
+
+    /**
+     * Command constraints for the command validation service.
+     *
+     * @return ConstraintsCollection
+     */
+    public static function getValidationConstraints(): ConstraintsCollection
+    {
+        $constraints = (new ConstraintsCollection())
+            ->addAssertions(
+                'email', [
+                    new Assert\Email(),
+                    new Assert\NotBlank()
+                ]
+            )
+            ->addAssertions(
+                'password', [
+                    new Assert\Length([
+                        'min' => 6
+                    ])
+                ]
+            )
+            ->addAssertions(
+                'firstName', [
+                    new Assert\NotBlank(),
+                    new Assert\Regex([
+                        'pattern' => Identity::VALIDATION_PATTERN
+                    ])
+                ]
+            )
+            ->addAssertions(
+                'lastName', [
+                    new Assert\NotBlank(),
+                    new Assert\Regex([
+                        'pattern' => Identity::VALIDATION_PATTERN
+                    ])
+                ]
+            )
+            ->addAssertions(
+                'role', [
+                    new Assert\Choice([
+                        'choices' => [Role::ROLE_ADMIN, Role::ROLE_REFEREE]
+                    ])
+                ]
+            );
+
+        return $constraints;
     }
 }

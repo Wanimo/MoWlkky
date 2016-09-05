@@ -57,7 +57,7 @@ final class RegisterUserHandler
             new UserId($this->uuidGenerator->generate()),
             $email,
             new Identity($command->getFirstName(), $command->getLastName()),
-            (new RawPassword($command->getPassword()))->encode($this->passwordEncoder),
+            (new RawPassword($command->getPassword()))->encode($this->passwordEncoder, uniqid()),
             new Role($command->getRole())
         );
 

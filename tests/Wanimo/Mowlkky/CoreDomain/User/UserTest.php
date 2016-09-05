@@ -72,13 +72,14 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $firstName = array_key_exists('firstName', $testData) ? $testData['firstName'] : $faker->firstName;
         $lastName = array_key_exists('lastName', $testData) ? $testData['lastName'] : $faker->lastName;
         $password = array_key_exists('password', $testData) ? $testData['password'] : $faker->password;
+        $salt = array_key_exists('salt', $testData) ? $testData['salt'] : $faker->password;
         $role = array_key_exists('role', $testData) ? $testData['role'] : Role::ROLE_REFEREE;
 
         $user = User::registerUser(
             new UserId($id),
             new Email($email),
             new Identity($firstName, $lastName),
-            new EncodedPassword($password),
+            new EncodedPassword($password, $salt),
             new Role($role)
         );
 
