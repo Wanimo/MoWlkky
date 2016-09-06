@@ -54,6 +54,15 @@ docker-compose run front-tools grunt
 
 That's it ! You're ready to [go](http://127.0.0.1:8080/app_dev.php) ! :)
 
+## Initialization
+
+Now the project is installed, you should create your first user before doing anything else.
+There is a Symfony command for that :
+
+```
+docker-compose run engine bin/console --env=dev mowlkky:user:create
+```
+
 ## Unit testing
 
 MoWlkky uses PHPUnit for unit testing.
