@@ -15,6 +15,14 @@ class ConstraintsCollection
     private $assertions;
 
     /**
+     * ConstraintsCollection constructor.
+     */
+    public function __construct()
+    {
+        $this->assertions = [];
+    }
+
+    /**
      * @param $attributeName
      * @param Assert[] $constraints
      * @return ConstraintsCollection
@@ -42,6 +50,14 @@ class ConstraintsCollection
         $this->assertions[$attributeName][] = $constraint;
 
         return $this;
+    }
+
+    /**
+     * @return Assert[]
+     */
+    public function getAssertions()
+    {
+        return $this->assertions;
     }
 
     /**

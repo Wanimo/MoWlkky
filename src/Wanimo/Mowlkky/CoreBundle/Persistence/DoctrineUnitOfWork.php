@@ -2,7 +2,7 @@
 
 namespace Wanimo\Mowlkky\CoreBundle\Persistence;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Wanimo\Mowlkky\CoreDomain\UnitOfWork;
 
 /**
@@ -11,17 +11,49 @@ use Wanimo\Mowlkky\CoreDomain\UnitOfWork;
 class DoctrineUnitOfWork implements UnitOfWork
 {
     /**
-     * @var ObjectManager
+     * @var EntityManager
      */
-    private $objectManager;
+    private $entityManager;
 
     /**
      * DoctrineUnitOfWork constructor.
-     * @param ObjectManager $objectManager
+     * @param EntityManager $entityManager
      */
-    public function __construct(ObjectManager $objectManager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->objectManager = $objectManager;
+        $this->entityManager = $entityManager;
+    }
+
+    /**
+     * @return UnitOfWork
+     */
+    public function flush(): UnitOfWork
+    {
+        // TODO : handle DomainEvents somewhere here.
+
+        $this->entityManager->flush();
+
+        return $this;
+    }
+
+    /**
+     * @return UnitOfWork
+     */
+    public function beginTransaction(): UnitOfWork
+    {
+        $this->entityManager->getConnection()->beginTransaction();
+
+        return $this;
+    }
+
+    /**
+     * @return UnitOfWork
+     */
+    public function rollBack(): UnitOfWork
+    {
+        $this->entityManager->getConnection()->rollBack();
+
+        return $this;
     }
 
     /**
@@ -29,9 +61,7 @@ class DoctrineUnitOfWork implements UnitOfWork
      */
     public function commit(): UnitOfWork
     {
-        // TODO : handle DomainEvents somewhere here.
-
-        $this->objectManager->flush();
+        $this->entityManager->getConnection()->commit();
 
         return $this;
     }

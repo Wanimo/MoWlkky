@@ -41,7 +41,7 @@ class RegisterUserCommand implements Command, Validatable
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -49,7 +49,7 @@ class RegisterUserCommand implements Command, Validatable
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -57,7 +57,7 @@ class RegisterUserCommand implements Command, Validatable
     /**
      * @return string
      */
-    public function getRole(): string
+    public function getRole()
     {
         return $this->role;
     }
@@ -65,7 +65,7 @@ class RegisterUserCommand implements Command, Validatable
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getFirstName()
     {
         return $this->firstName;
     }
@@ -73,7 +73,7 @@ class RegisterUserCommand implements Command, Validatable
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getLastName()
     {
         return $this->lastName;
     }

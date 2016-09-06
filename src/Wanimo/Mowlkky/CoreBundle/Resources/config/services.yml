@@ -2,6 +2,8 @@ parameters:
     mowlkky.uow.class: Wanimo\Mowlkky\CoreBundle\Persistence\DoctrineUnitOfWork
     mowlkky.repository.user.class:  Wanimo\Mowlkky\CoreBundle\Repository\Doctrine\UserRepository
     mowlkky.command_bus.class:  Wanimo\Mowlkky\CoreBundle\Command\Bus
+    mowlkky.command_bus_validator.class:  Wanimo\Mowlkky\CoreBundle\Command\BusWithValidation
+    mowlkky.command_bus_transactional.class:  Wanimo\Mowlkky\CoreBundle\Command\TransactionalBus
     mowlkky.command.register_user_handler.class: Wanimo\Mowlkky\CoreDomain\User\RegisterUserHandler
     mowlkky.password_encoder.class: Wanimo\Mowlkky\CoreBundle\Security\SymfonyPasswordEncoderAdapter
     mowlkky.concrete_password_encoder.class: Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder
@@ -22,6 +24,14 @@ services:
     mowlkky.command.bus:
         class:        '%mowlkky.command_bus.class%'
         arguments:    ['@service_container']
+
+    mowlkky.command.bus_validator:
+        class:        '%mowlkky.command_bus_validator.class%'
+        arguments:    ['@mowlkky.command.bus', '@validator']
+
+    mowlkky.command.bus_transactional:
+        class:        '%mowlkky.command_bus_transactional.class%'
+        arguments:    ['@mowlkky.command.bus_validator', '@mowlkky.uow']
 
     mowlkky.command.register_user_handler:
         class:        '%mowlkky.command.register_user_handler.class%'
