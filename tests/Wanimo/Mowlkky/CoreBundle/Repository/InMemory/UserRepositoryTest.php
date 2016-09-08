@@ -25,7 +25,7 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
 
         $repository = new UserRepository();
 
-        $user = UserTest::createRandomTestInstance(['email' => $email = $faker->email]);
+        $user = UserTest::createStandardTestInstance(['email' => $email = $faker->email]);
         $repository->add($user);
         $foundUser = $repository->findOneByEmail($user->getEmail());
         $otherFoundUser = $repository->findOneByEmail(new Email($faker->email));

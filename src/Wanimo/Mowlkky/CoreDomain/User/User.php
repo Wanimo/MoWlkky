@@ -125,18 +125,25 @@ class User extends AggregateRoot
     }
 
     /**
-     * @param RegisterUserCommand $command
+     * Register a new user
+     *
+     * @param UserId $id
+     * @param Email $email
+     * @param Identity $identity
+     * @param EncodedPassword $password
+     * @param Role $role
+     *
      * @return User
      */
-    public static function registerUser(RegisterUserCommand $command, PasswordEncoder $encoder)
+    public static function registerUser(UserId $id, Email $email, Identity $identity, EncodedPassword $password, Role $role)
     {
         $user = new self;
 
-        $user->id = $command->getUserId();
-        $user->email = $command->getEmail();
-        $user->identity = $command->getIdentity();
-        $user->password = $command->getRawPassword()->encode($encoder);
-        $user->role = $command->getRole();
+        $user->id = $id;
+        $user->email = $email;
+        $user->identity = $identity;
+        $user->password = $password;
+        $user->role = $role;
 
         $user->recordEvent(new UserWasRegistered($user));
 

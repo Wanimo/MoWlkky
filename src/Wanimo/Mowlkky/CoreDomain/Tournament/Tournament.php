@@ -63,6 +63,8 @@ class Tournament extends AggregateRoot
         $this->creationDate = new DateTime();
         $this->lastUpdateDate = new DateTime();
         $this->status = new Status(Status::STATUS_CREATING);
+        $this->games = new GameCollection();
+        $this->players = new PlayerCollection();
     }
 
     /**

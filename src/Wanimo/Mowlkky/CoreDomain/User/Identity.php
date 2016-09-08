@@ -9,6 +9,8 @@ use InvalidArgumentException;
  */
 final class Identity
 {
+    const VALIDATION_PATTERN = '/^[[:alpha:]]+([-\' ]|[[:alpha:]])*$/i';
+
     /**
      * @var string
      */
@@ -40,7 +42,7 @@ final class Identity
      */
     protected function checkValueFormat(string $value, string $valueName)
     {
-        if (!preg_match('/^[[:alpha:]]+([-\' ]|[[:alpha:]])*$/i', $value)) {
+        if (!preg_match(self::VALIDATION_PATTERN, $value)) {
             throw new InvalidArgumentException(
                 sprintf(
                     '%s can only contain letters, dashes or spaces and start with a letter. "%s" is invalid.',

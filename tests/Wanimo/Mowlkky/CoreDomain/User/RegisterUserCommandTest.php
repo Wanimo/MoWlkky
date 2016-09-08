@@ -25,10 +25,7 @@ class RegisterUserCommandTest
             ->withFirstName(array_key_exists('firstName', $testData) ? $testData['firstName'] : $faker->firstName)
             ->withLastName(array_key_exists('lastName', $testData) ? $testData['lastName'] : $faker->lastName)
             ->withRawPassword(array_key_exists('password', $testData) ? $testData['password'] : $faker->password)
-            ->withRole(array_key_exists('role', $testData) ? $testData['role'] : Role::ROLE_REFEREE)
-            ->withUserId(
-                new UserId(array_key_exists('id', $testData) ? $testData['id'] : $faker->uuid)
-            );
+            ->withRole(array_key_exists('role', $testData) ? $testData['role'] : Role::ROLE_REFEREE);
 
         return $command;
     }

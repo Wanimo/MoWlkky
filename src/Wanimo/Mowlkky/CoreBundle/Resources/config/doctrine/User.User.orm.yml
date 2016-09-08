@@ -1,0 +1,36 @@
+Wanimo\Mowlkky\CoreDomain\User\User:
+    type: entity
+    table: user
+    indexes:
+        user_email:
+          columns: [ email ]
+    id:
+        id:
+            column: id
+            type: user_id
+
+    fields:
+        lastConnectionDate:
+            type: datetimetz
+            column: last_connection_date
+            nullable: true
+        registrationDate:
+            type: datetimetz
+            column: registration_date
+        lastUpdateDate:
+            type: datetimetz
+            column: last_update_date
+
+    embedded:
+        email:
+            class: Wanimo\Mowlkky\CoreDomain\User\Email
+            columnPrefix: false
+        identity:
+            class: Wanimo\Mowlkky\CoreDomain\User\Identity
+            columnPrefix: false
+        password:
+            class: Wanimo\Mowlkky\CoreDomain\User\Password\EncodedPassword
+            columnPrefix: false
+        role:
+            class: Wanimo\Mowlkky\CoreDomain\User\Role
+            columnPrefix: false

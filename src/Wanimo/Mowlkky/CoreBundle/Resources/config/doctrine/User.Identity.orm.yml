@@ -1,0 +1,13 @@
+Wanimo\Mowlkky\CoreDomain\User\Identity:
+    type: embeddable
+    fields:
+        firstName:
+            column: first_name
+            type: string
+            nullable: false
+            length: 50
+        lastName:
+            column: last_name
+            type: string
+            nullable: false
+            length: 50
