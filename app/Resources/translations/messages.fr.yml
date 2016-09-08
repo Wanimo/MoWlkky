@@ -11,3 +11,11 @@ front:
     home:
         title: 'Mo<span>W</span>lkky'
         description: 'Préparez, organisez, visualisez vos tournois de Molkky !'
+
+back:
+    login:
+        title: Identification
+        please: Veuillez vous connecter
+        login: Email
+        password: Mot de passe
+        login_button: Se connecter

@@ -1,3 +1,1 @@
-@import url(https://fonts.googleapis.com/css?family=Gochi+Hand);body{color:#333}body .navbar .navbar-brand{font-size:2em;font-family:"Gochi Hand",cursive}body .navbar span{color:#B9D15E}body h1{font-family:"Gochi Hand",cursive}body h1 span{color:#B9D15E}
-
-/*# sourceMappingURL=main.css.map */
+@import url(https://fonts.googleapis.com/css?family=Gochi+Hand);body{padding-top:50px;color:#333}body h1{font-family:"Gochi Hand",cursive}body h1 span{color:#B9D15E}body p{margin:10px 0}body .navbar .navbar-brand{font-size:2em;font-family:"Gochi Hand",cursive}body .navbar span{color:#B9D15E}body #loginPage{max-width:400px;padding:15px;margin:25px auto 0 auto}

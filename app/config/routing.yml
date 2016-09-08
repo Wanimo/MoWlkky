@@ -1,3 +1,7 @@
 front_home:
     path:     /
     defaults: { _controller: FrontBundle:Home:index }
+
+login:
+    path:     /login
+    defaults: { _controller: BackBundle:Security:login }
