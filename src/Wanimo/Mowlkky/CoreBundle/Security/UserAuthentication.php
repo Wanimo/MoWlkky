@@ -22,6 +22,14 @@ class UserAuthentication implements UserInterface
     }
 
     /**
+     * @return User
+     */
+    public function getModel()
+    {
+        return $this->user;
+    }
+
+    /**
      * Returns the roles granted to the user.
 
      * @return string[] The user roles

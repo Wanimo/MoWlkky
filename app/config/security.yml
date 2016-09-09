@@ -9,6 +9,9 @@ security:
     encoders:
         Wanimo\Mowlkky\CoreBundle\Security\UserAuthentication: sha512
 
+    access_control:
+        - { path: ^/gestion, roles: IS_AUTHENTICATED_FULLY }
+
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -20,6 +23,7 @@ security:
             form_login:
                 login_path: /connexion
                 check_path: /connexion
+                default_target_path: /gestion
             logout:
                 path:   /deconnexion
                 target: /
