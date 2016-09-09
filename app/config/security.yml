@@ -18,5 +18,8 @@ security:
         main:
             anonymous: ~
             form_login:
-                login_path: login
-                check_path: login
+                login_path: /connexion
+                check_path: /connexion
+            logout:
+                path:   /deconnexion
+                target: /

@@ -4,7 +4,9 @@ common:
             site_name: 'Mo<span>W</span>lkky'
             admin_access: 'Accès administrateurs et arbitres'
             signin: 'S''identifier'
-            login: 'Identifiant'
+            management_zone: 'Zone de gestion'
+            signout: 'Se déconnecter'
+            login: 'Email'
             password: 'Mot de passe'
 
 front:
@@ -19,3 +21,10 @@ back:
         login: Email
         password: Mot de passe
         login_button: Se connecter
+    index:
+        title: Zone de gestion
+        h1: Accueil zone de gestion
+        menu:
+            home: Accueil
+            tournaments: Gestion des tournois
+            users: Gestion des utilisateurs

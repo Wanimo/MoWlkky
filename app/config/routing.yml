@@ -5,3 +5,10 @@ front_home:
 login:
     path:     /connexion
     defaults: { _controller: mowlkky.controller.back.login:loginAction }
+
+logout:
+    path: /deconnexion
+
+backend:
+    prefix:   /gestion
+    resource: '@BackBundle/Resources/config/routing.yml'

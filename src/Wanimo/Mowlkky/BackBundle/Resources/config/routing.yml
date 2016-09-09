@@ -1,0 +1,3 @@
+back_index:
+    path:     /
+    defaults: { _controller: mowlkky.controller.back.index:indexAction }
