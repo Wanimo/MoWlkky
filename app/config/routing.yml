@@ -3,5 +3,5 @@ front_home:
     defaults: { _controller: FrontBundle:Home:index }
 
 login:
-    path:     /login
-    defaults: { _controller: BackBundle:Security:login }
+    path:     /connexion
+    defaults: { _controller: mowlkky.controller.back.login:loginAction }
