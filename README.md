@@ -63,7 +63,9 @@ There is a Symfony command for that :
 docker-compose run engine bin/console --env=dev mowlkky:user:create
 ```
 
-## Unit testing
+## Tests
+
+### Unit
 
 MoWlkky uses PHPUnit for unit testing.
 You can launch the tests with this command :
@@ -72,6 +74,16 @@ You can launch the tests with this command :
 docker-compose run engine phpunit
 ```
 
+### Functional
+
+For functional testing, Behat is used.
+Run it with this command :
+
+```
+docker-compose run engine behat
+```
+
+## Let's play !
 
 ```
   ( 7)( 9)( 8)
