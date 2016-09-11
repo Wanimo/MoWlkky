@@ -7,4 +7,4 @@ before_script:
 
 script:
   - phpunit --coverage-text
-  - bin/behat
+  - vendor/bin/behat
