@@ -9,7 +9,7 @@ use InvalidArgumentException;
  */
 final class Identity
 {
-    const VALIDATION_PATTERN = '/^[[:alpha:]]+([-\' ]|[[:alpha:]])*$/i';
+    const VALIDATION_PATTERN = '/^[a-zÀ-ÿ]+([-\' ]|[a-zÀ-ÿ])*$/i';
 
     /**
      * @var string

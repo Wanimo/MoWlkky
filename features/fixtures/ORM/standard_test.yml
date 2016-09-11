@@ -1,0 +1,45 @@
+# Users
+
+## User VOs
+
+### Identitites
+Wanimo\Mowlkky\CoreDomain\User\Identity:
+    identity_0:
+        __construct: ['Bobby', 'Bobbinen']
+    identity_{1..10}:
+        __construct: ['<firstName()>', '<lastName()>']
+
+## Emails
+Wanimo\Mowlkky\CoreDomain\User\Email:
+    email_0:
+        __construct: ['b.bobbinen@molkky.fr']
+    email_{1..10}:
+        __construct: ['<email()>']
+
+## Roles
+Wanimo\Mowlkky\CoreDomain\User\Role:
+    role_referee:
+        __construct: ['referee']
+    role_admin:
+        __construct: ['admin']
+
+## Ids
+Wanimo\Mowlkky\CoreDomain\User\UserId:
+    user_id_0:
+        __construct: ['66bcae88-7755-11e6-8b77-86f30ca893d3']
+    user_id_{1..10}:
+        __construct: ['<uuid()>']
+
+## Passwords
+Wanimo\Mowlkky\CoreDomain\User\Password\EncodedPassword:
+    password_0:
+        __construct: ['1234abcd', 'azerty']
+    password_{1..10}:
+        __construct: ['<password()>', '<password()>']
+
+## User entities
+Wanimo\Mowlkky\CoreDomain\User\User:
+    user_0:
+        __construct: { registerUser: ['@user_id_0', '@email_0', '@identity_0', '@password_0', '@role_referee'] }
+    user_{1..10}:
+        __construct: { registerUser: ['@user_id_<current()>', '@email_<current()>', '@identity_<current()>', '@password_<current()>', '@role_referee'] }
