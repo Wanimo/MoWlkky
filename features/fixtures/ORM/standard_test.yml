@@ -12,7 +12,7 @@ Wanimo\Mowlkky\CoreDomain\User\Identity:
 ## Emails
 Wanimo\Mowlkky\CoreDomain\User\Email:
     email_0:
-        __construct: ['b.bobbinen@molkky.fr']
+        __construct: ['b.bobbinen@molkky.fi']
     email_{1..10}:
         __construct: ['<email()>']
 
@@ -33,7 +33,7 @@ Wanimo\Mowlkky\CoreDomain\User\UserId:
 ## Passwords
 Wanimo\Mowlkky\CoreDomain\User\Password\EncodedPassword:
     password_0:
-        __construct: ['1234abcd', 'azerty']
+        __construct: ['EnJ7WufDeU6GKzO3AXVIUueS2iGQOzNSq76WSpNjLFQFME8sEYppKXwgRLUcW0Xsj6lsn3f9ihg9nbcZvh9avQ==', '57d51e27acbe1'] # raw : molkkyrocks
     password_{1..10}:
         __construct: ['<password()>', '<password()>']
 
