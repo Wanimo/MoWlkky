@@ -1,0 +1,21 @@
+default:
+    suites:
+        default:
+            contexts:
+                - FeatureContext:
+                    entityManager: '@doctrine.orm.default_entity_manager'
+                - CommandContext:
+                    kernel: '@kernel'
+                    commandDefinitions:
+                        - { className: Wanimo\Mowlkky\BackBundle\Command\CreateUserCommand, arguments: [ '@service_container' ] }
+                - Fidry\AliceBundleExtension\Context\Doctrine\AliceORMContext: ~
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                env: test
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
+        Fidry\AliceBundleExtension\Extension:
+            fixtures_base_path: ~

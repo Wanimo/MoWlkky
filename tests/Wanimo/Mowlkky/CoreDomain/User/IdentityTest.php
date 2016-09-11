@@ -20,6 +20,8 @@ class IdentityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(null, $this->newAndCatchException('John', 'Doedoe Deedon'));
         $this->assertEquals(null, $this->newAndCatchException('John', 'Doedoe-Deedon'));
         $this->assertEquals(null, $this->newAndCatchException('John\'s', 'Doedoe\'Deedon'));
+        $this->assertEquals(null, $this->newAndCatchException('Jön', 'Doe'));
+        $this->assertEquals(null, $this->newAndCatchException('Jön', 'Döe'));
         $this->assertInstanceOf(InvalidArgumentException::class, $this->newAndCatchException('J@hn', 'Doe'));
         $this->assertInstanceOf(InvalidArgumentException::class, $this->newAndCatchException('John', 'D0e'));
         $this->assertInstanceOf(InvalidArgumentException::class, $this->newAndCatchException('-John', 'Doe'));
