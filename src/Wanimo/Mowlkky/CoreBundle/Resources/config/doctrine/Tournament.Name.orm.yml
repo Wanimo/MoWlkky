@@ -1,0 +1,8 @@
+Wanimo\Mowlkky\CoreDomain\Tournament\Name:
+    type: embeddable
+    fields:
+        value:
+            column: name
+            type: string
+            nullable: true
+            length: 255

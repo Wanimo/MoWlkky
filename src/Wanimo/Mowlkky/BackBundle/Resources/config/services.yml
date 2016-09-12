@@ -6,3 +6,7 @@ services:
     mowlkky.controller.back.login:
         class: Wanimo\Mowlkky\BackBundle\Controller\LoginController
         arguments: ['@templating', '@security.authentication_utils']
+
+    mowlkky.controller.back.tournament_index:
+        class: Wanimo\Mowlkky\BackBundle\Controller\TournamentController
+        arguments: ['@templating']

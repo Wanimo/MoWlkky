@@ -50,6 +50,8 @@ doctrine:
         types:
             user_id:
                 class: Wanimo\Mowlkky\CoreBundle\Persistence\Types\DoctrineUserId
+            tournament_id:
+                class: Wanimo\Mowlkky\CoreBundle\Persistence\Types\DoctrineTournamentId
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"

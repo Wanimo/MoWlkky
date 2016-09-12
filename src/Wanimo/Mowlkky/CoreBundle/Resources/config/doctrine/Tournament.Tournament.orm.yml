@@ -1,0 +1,30 @@
+Wanimo\Mowlkky\CoreDomain\Tournament\Tournament:
+    type: entity
+    table: tournament
+    id:
+        id:
+            column: id
+            type: tournament_id
+
+    fields:
+        startDate:
+            type: datetimetz
+            column: start_date
+        creationDate:
+            type: datetimetz
+            column: registration_date
+        lastUpdateDate:
+            type: datetimetz
+            column: last_update_date
+
+    embedded:
+        name:
+            class: Wanimo\Mowlkky\CoreDomain\Tournament\Name
+            columnPrefix: false
+
+    manyToOne:
+        creator:
+          targetEntity: Wanimo\Mowlkky\CoreDomain\User\User
+          joinColumn:
+            name: creator_id
+            referencedColumnName: id

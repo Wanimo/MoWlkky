@@ -72,6 +72,8 @@ class UserRepository implements UserRepositoryInterface
         if ($this->has($userId)) {
             unset($this->users[$userId->getValue()]);
         }
+
+        return $this;
     }
 
     /**
