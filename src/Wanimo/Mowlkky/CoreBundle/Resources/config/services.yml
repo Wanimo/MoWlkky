@@ -1,0 +1,56 @@
+parameters:
+    mowlkky.uow.class: Wanimo\Mowlkky\CoreBundle\Persistence\DoctrineUnitOfWork
+    mowlkky.repository.user.class:  Wanimo\Mowlkky\CoreBundle\Repository\Doctrine\UserRepository
+    mowlkky.command_bus.class:  Wanimo\Mowlkky\CoreBundle\Command\Bus
+    mowlkky.command_bus_validator.class:  Wanimo\Mowlkky\CoreBundle\Command\BusWithValidation
+    mowlkky.command_bus_transactional.class:  Wanimo\Mowlkky\CoreBundle\Command\TransactionalBus
+    mowlkky.command.register_user_handler.class: Wanimo\Mowlkky\CoreDomain\User\RegisterUserHandler
+    mowlkky.password_encoder.class: Wanimo\Mowlkky\CoreBundle\Security\SymfonyPasswordEncoderAdapter
+    mowlkky.concrete_password_encoder.class: Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder
+    mowlkky.uuid_generator.class: Wanimo\Mowlkky\CoreBundle\UuidGeneratorAdapter
+
+services:
+
+    mowlkky.uow:
+        class:        '%mowlkky.uow.class%'
+        arguments:    ['@doctrine.orm.default_entity_manager']
+
+    # Repositories
+    mowlkky.repository.user:
+        class:        '%mowlkky.repository.user.class%'
+        arguments:    ['@doctrine.orm.default_entity_manager']
+
+    # Commands
+    mowlkky.command.bus:
+        class:        '%mowlkky.command_bus.class%'
+        arguments:    ['@service_container']
+
+    mowlkky.command.bus_validator:
+        class:        '%mowlkky.command_bus_validator.class%'
+        arguments:    ['@mowlkky.command.bus', '@validator']
+
+    mowlkky.command.bus_transactional:
+        class:        '%mowlkky.command_bus_transactional.class%'
+        arguments:    ['@mowlkky.command.bus_validator', '@mowlkky.uow']
+
+    mowlkky.command.register_user_handler:
+        class:        '%mowlkky.command.register_user_handler.class%'
+        arguments:
+            - '@mowlkky.repository.user'
+            - '@mowlkky.uuid_generator'
+            - '@mowlkky.password_encoder'
+        tags:
+            - { name: mowlkky.command_handler, command: 'Wanimo\Mowlkky\CoreDomain\User\RegisterUserCommand' }
+
+    # Common services
+    mowlkky.concrete_password_encoder:
+        public:       false
+        class:        '%mowlkky.concrete_password_encoder.class%'
+
+    mowlkky.password_encoder:
+        class:        '%mowlkky.password_encoder.class%'
+        arguments:    ['@mowlkky.concrete_password_encoder']
+
+    mowlkky.uuid_generator:
+        class:        '%mowlkky.uuid_generator.class%'
+        arguments:    []

@@ -2,17 +2,19 @@
 
 namespace Wanimo\Mowlkky\CoreDomain\User;
 
-use Wanimo\Mowlkky\CoreDomain\User\Password\RawPassword;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class RegisterUserCommand
+use Wanimo\Mowlkky\CoreDomain\Command\Command;
+use Wanimo\Mowlkky\CoreDomain\Validation\ConstraintsCollection;
+use Wanimo\Mowlkky\CoreDomain\Validation\Validatable;
+
+/**
+ * Command used to register a new user.
+ */
+class RegisterUserCommand implements Command, Validatable
 {
     /**
-     * @var UserId
-     */
-    private $userId;
-
-    /**
-     * @var Email
+     * @var string
      */
     private $email;
 
@@ -37,54 +39,43 @@ class RegisterUserCommand
     private $lastName;
 
     /**
-     * @return UserId
+     * @return string
      */
-    public function getUserId(): UserId
+    public function getEmail()
     {
-        return $this->userId;
+        return $this->email;
     }
 
     /**
-     * @return Email
+     * @return string
      */
-    public function getEmail(): Email
+    public function getPassword()
     {
-        return new Email($this->email);
+        return $this->password;
     }
 
     /**
-     * @return RawPassword
+     * @return string
      */
-    public function getRawPassword(): RawPassword
+    public function getRole()
     {
-        return new RawPassword($this->password);
+        return $this->role;
     }
 
     /**
-     * @return Role
+     * @return string
      */
-    public function getRole(): Role
+    public function getFirstName()
     {
-        return new Role($this->role);
+        return $this->firstName;
     }
 
     /**
-     * @return Identity
+     * @return string
      */
-    public function getIdentity(): Identity
+    public function getLastName()
     {
-        return new Identity($this->firstName, $this->lastName);
-    }
-
-    /**
-     * @param UserId $userId
-     * @return RegisterUserCommand
-     */
-    public function withUserId(UserId $userId): RegisterUserCommand
-    {
-        $this->userId = $userId;
-
-        return $this;
+        return $this->lastName;
     }
 
     /**
@@ -140,5 +131,53 @@ class RegisterUserCommand
         $this->lastName = $lastName;
 
         return $this;
+    }
+
+    /**
+     * Command constraints for the command validation service.
+     *
+     * @return ConstraintsCollection
+     */
+    public static function getValidationConstraints(): ConstraintsCollection
+    {
+        $constraints = (new ConstraintsCollection())
+            ->addAssertions(
+                'email', [
+                    new Assert\Email(),
+                    new Assert\NotBlank()
+                ]
+            )
+            ->addAssertions(
+                'password', [
+                    new Assert\Length([
+                        'min' => 6
+                    ])
+                ]
+            )
+            ->addAssertions(
+                'firstName', [
+                    new Assert\NotBlank(),
+                    new Assert\Regex([
+                        'pattern' => Identity::VALIDATION_PATTERN
+                    ])
+                ]
+            )
+            ->addAssertions(
+                'lastName', [
+                    new Assert\NotBlank(),
+                    new Assert\Regex([
+                        'pattern' => Identity::VALIDATION_PATTERN
+                    ])
+                ]
+            )
+            ->addAssertions(
+                'role', [
+                    new Assert\Choice([
+                        'choices' => [Role::ROLE_ADMIN, Role::ROLE_REFEREE]
+                    ])
+                ]
+            );
+
+        return $constraints;
     }
 }
