@@ -56,7 +56,7 @@ docker-compose run front-tools grunt
 Create database with this command :
 
 ```
-docker-compose run engine bin/console --env=dev doctrine:schema:create --force
+docker-compose run engine bin/console --env=dev doctrine:schema:create
 ```
 
 That's it ! You're ready to [go](http://127.0.0.1:8080/app_dev.php) ! :)
