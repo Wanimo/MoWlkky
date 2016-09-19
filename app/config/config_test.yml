@@ -14,3 +14,15 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+hautelook_alice:
+    db_drivers:
+        orm: ~
+    locale: fr_FR
+    persist_once: false
+    loading_limit: 5
+
+doctrine:
+    dbal:
+        driver: pdo_sqlite
+        memory: true
