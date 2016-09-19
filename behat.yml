@@ -2,8 +2,7 @@ default:
     suites:
         default:
             contexts:
-                - FeatureContext:
-                    entityManager: '@doctrine.orm.default_entity_manager'
+                - FeatureContext: ~
                 - CommandContext:
                     kernel: '@kernel'
                     commandDefinitions:

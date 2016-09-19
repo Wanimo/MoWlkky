@@ -6,8 +6,23 @@ $altColor: #B9D15E;
 $altFontFamily: 'Gochi Hand', cursive;
 
 body {
+  padding-top: 50px;
   color: $baseColor;
 
+  /* Default tags */
+  h1 {
+    font-family: $altFontFamily;
+
+    span {
+      color: $altColor;
+    }
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  /* Top level classes */
   .navbar {
     .navbar-brand {
       font-size: 2em;
@@ -19,11 +34,10 @@ body {
     }
   }
 
-  h1 {
-    font-family: $altFontFamily;
-
-    span {
-      color: $altColor;
-    }
+  /* Pages specifics */
+  #loginPage {
+    max-width:  400px;
+    padding: 15px;
+    margin: 25px auto 0 auto;
   }
 }

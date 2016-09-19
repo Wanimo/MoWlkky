@@ -1,0 +1,8 @@
+services:
+    mowlkky.controller.back.index:
+        class: Wanimo\Mowlkky\BackBundle\Controller\IndexController
+        arguments: ['@templating']
+
+    mowlkky.controller.back.login:
+        class: Wanimo\Mowlkky\BackBundle\Controller\LoginController
+        arguments: ['@templating', '@security.authentication_utils']

@@ -25,4 +25,4 @@ hautelook_alice:
 doctrine:
     dbal:
         driver: pdo_sqlite
-        memory: true
+        path: '%kernel.root_dir%/../var/test.db'

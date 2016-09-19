@@ -8,6 +8,8 @@ parameters:
     mowlkky.password_encoder.class: Wanimo\Mowlkky\CoreBundle\Security\SymfonyPasswordEncoderAdapter
     mowlkky.concrete_password_encoder.class: Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder
     mowlkky.uuid_generator.class: Wanimo\Mowlkky\CoreBundle\UuidGeneratorAdapter
+    mowlkky.security.user_authentication_provider.class: Wanimo\Mowlkky\CoreBundle\Security\RepositoryUserAuthenticationProvider
+    mowlkky.security.interactive_login_listener.class: Wanimo\Mowlkky\BackBundle\Event\AuthenticationListener
 
 services:
 
@@ -41,6 +43,18 @@ services:
             - '@mowlkky.password_encoder'
         tags:
             - { name: mowlkky.command_handler, command: 'Wanimo\Mowlkky\CoreDomain\User\RegisterUserCommand' }
+
+    # Security
+    mowlkky.security.user_authentication_provider:
+        class:         '%mowlkky.security.user_authentication_provider.class%'
+        arguments:     ['@mowlkky.repository.user']
+
+    # Events
+    mowlkky.security.interactive_login_listener:
+        class: '%mowlkky.security.interactive_login_listener.class%'
+        arguments: ['@mowlkky.uow', '@mowlkky.repository.user']
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onAuthenticationSuccess }
 
     # Common services
     mowlkky.concrete_password_encoder:

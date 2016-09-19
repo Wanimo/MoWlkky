@@ -16,7 +16,7 @@ abstract class ArrayCollection implements Countable, IteratorAggregate, ArrayAcc
      *
      * @return array
      */
-    protected $elements;
+    protected $elements = array();
     
     /**
      * Check if a new element added to the collection is of the right type.

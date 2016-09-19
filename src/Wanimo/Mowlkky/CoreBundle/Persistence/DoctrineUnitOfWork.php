@@ -25,13 +25,15 @@ class DoctrineUnitOfWork implements UnitOfWork
     }
 
     /**
+     * @param mixed $object
+     *
      * @return UnitOfWork
      */
-    public function flush(): UnitOfWork
+    public function flush($object = null): UnitOfWork
     {
         // TODO : handle DomainEvents somewhere here.
 
-        $this->entityManager->flush();
+        $this->entityManager->flush($object);
 
         return $this;
     }

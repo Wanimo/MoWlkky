@@ -1,0 +1,15 @@
+{% extends 'FrontBundle::base.html.twig' %}
+
+{% block title %}{{ 'back.index.title'|trans() }}{% endblock %}
+
+{% block body %}
+    <div class="container" id="backIndexPage">
+        <h1>{{ 'back.index.h1'|trans() }}</h1>
+
+        <ul>
+            <li><a href="{{ path('back_index') }}">{{ 'back.index.menu.home'|trans() }}</a></li>
+            <li><a href="#">{{ 'back.index.menu.tournaments'|trans() }}</a></li>
+            <li><a href="#">{{ 'back.index.menu.users'|trans() }}</a></li>
+        </ul>
+    </div>
+{% endblock %}

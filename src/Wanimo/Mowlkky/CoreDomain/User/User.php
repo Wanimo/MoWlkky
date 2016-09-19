@@ -125,6 +125,16 @@ class User extends AggregateRoot
     }
 
     /**
+     * @return User
+     */
+    public function login(): User
+    {
+        $this->lastConnectionDate = new DateTime();
+
+        return $this;
+    }
+
+    /**
      * Register a new user
      *
      * @param UserId $id
