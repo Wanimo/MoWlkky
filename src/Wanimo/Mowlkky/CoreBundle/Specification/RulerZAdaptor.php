@@ -2,35 +2,40 @@
 
 namespace Wanimo\Mowlkky\CoreBundle\Specification;
 
-use RulerZ\RulerZ;
 use Wanimo\Mowlkky\CoreDomain\Specification;
 
 /**
- * Adaptor for the RulerZ library, to work with the CoreBundle
+ * Simple Adaptor to turn a RulerZSpecification into a Mowllky one.
  */
-class RulerZAdaptor implements Processor
+class RulerZAdaptor implements Specification
 {
     /**
-     * @var RulerZ
+     * @var \RulerZ\Spec\Specification
      */
-    private $rulerZ;
+    private $base;
 
-    /**
-     * RulerZAdaptor constructor.
-     * @param RulerZ $rulerZ
-     */
-    public function __construct(RulerZ $rulerZ)
+    public function __construct(\RulerZ\Spec\Specification $base)
     {
-        $this->rulerZ = $rulerZ;
+        $this->base = $base;
     }
 
     /**
-     * @param mixed $target
-     * @param Specification $specification
-     * @return mixed
+     * The rule representing the specification.
+     *
+     * @return string
      */
-    public function applyOnTarget($target, Specification $specification)
+    public function getRule()
     {
-        return $this->rulerZ->filterSpec($target, $specification);
+        return $this->base->getRule();
+    }
+
+    /**
+     * The parameters used in the specification.
+     *
+     * @return array
+     */
+    public function getParameters()
+    {
+        return $this->base->getParameters();
     }
 }

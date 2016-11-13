@@ -1,6 +1,6 @@
 <?php
 
-namespace Wanimo\Mowlkky\CoreBundle\Specification;
+namespace Wanimo\Mowlkky\CoreBundle\Specification\Processor;
 
 use Wanimo\Mowlkky\CoreDomain\Specification;
 

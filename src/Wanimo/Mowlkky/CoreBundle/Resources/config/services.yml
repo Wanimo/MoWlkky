@@ -12,7 +12,7 @@ parameters:
     mowlkky.uuid_generator.class: Wanimo\Mowlkky\CoreBundle\UuidGeneratorAdapter
     mowlkky.security.user_authentication_provider.class: Wanimo\Mowlkky\CoreBundle\Security\RepositoryUserAuthenticationProvider
     mowlkky.security.interactive_login_listener.class: Wanimo\Mowlkky\BackBundle\Event\AuthenticationListener
-    mowlkky.specification.processor.class: Wanimo\Mowlkky\CoreBundle\Specification\RulerZAdaptor
+    mowlkky.specification.processor.class: Wanimo\Mowlkky\CoreBundle\Specification\Processor\RulerZAdaptor
 
 services:
 

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Wanimo\Mowlkky\CoreBundle\Specification\RulerZAdaptor;
 use Wanimo\Mowlkky\CoreDomain\Tournament\TournamentRepository;
 use Wanimo\Mowlkky\CoreDomain\Tournament\Specification as TournSpec;
 
@@ -49,7 +50,7 @@ class IndexController extends Controller
             new TournSpec\NamedLike('%U%')
         );
 
-        $tournaments = $this->tournamentRepository->match($specification);
+        $tournaments = $this->tournamentRepository->match(new RulerZAdaptor($specification));
 
         return $this->templating->renderResponse(
             'BackBundle:Tournament:index.html.twig',
