@@ -6,7 +6,7 @@ use DateTime;
 use Wanimo\Mowlkky\CoreDomain\AggregateRoot;
 use Wanimo\Mowlkky\CoreDomain\Game\GameCollection;
 use Wanimo\Mowlkky\CoreDomain\Player\PlayerCollection;
-use Wanimo\Mowlkky\CoreDomain\Tournament\Event\TournamentInitialized;
+use Wanimo\Mowlkky\CoreDomain\Tournament\Initialization\TournamentWasInitialized;
 use Wanimo\Mowlkky\CoreDomain\User\User;
 
 /**
@@ -32,7 +32,7 @@ class Tournament extends AggregateRoot
     /**
      * @var DateTime
      */
-    protected $startDate;
+    protected $startingDate;
 
     /**
      * @var DateTime
@@ -43,6 +43,11 @@ class Tournament extends AggregateRoot
      * @var DateTime
      */
     protected $lastUpdateDate;
+
+    /**
+     * @var Status
+     */
+    protected $status;
 
     /**
      * @var PlayerCollection
@@ -61,6 +66,7 @@ class Tournament extends AggregateRoot
     {
         $this->creationDate = new DateTime();
         $this->lastUpdateDate = new DateTime();
+        $this->status = new Status(Status::STATUS_CREATING);
         $this->games = new GameCollection();
         $this->players = new PlayerCollection();
     }
@@ -92,9 +98,9 @@ class Tournament extends AggregateRoot
     /**
      * @return DateTime
      */
-    public function getStartDate(): DateTime
+    public function getStartingDate(): DateTime
     {
-        return $this->startDate;
+        return $this->startingDate;
     }
 
     /**
@@ -114,25 +120,49 @@ class Tournament extends AggregateRoot
     }
 
     /**
+     * @return Status
+     */
+    public function getStatus(): Status
+    {
+        return $this->status;
+    }
+
+    /**
+     * @return PlayerCollection
+     */
+    public function getPlayers(): PlayerCollection
+    {
+        return $this->players;
+    }
+
+    /**
+     * @return GameCollection
+     */
+    public function getGames(): GameCollection
+    {
+        return $this->games;
+    }
+
+    /**
      * @param TournamentId $id
      * @param User $creator
-     * @param DateTime $startDate
      * @param Name $name
+     * @param DateTime $startingDate
      * @return Tournament
      */
-    public static function initializeNewTournament(
-        TournamentId $id, User $creator, DateTime $startDate, Name $name = null
-    ): Tournament
+    public static function initializeNewTournament(TournamentId $id, User $creator, Name $name, DateTime $startingDate): Tournament
     {
         $tournament = new self;
 
         $tournament->id = $id;
         $tournament->creator = $creator;
-        $tournament->startDate = $startDate;
         $tournament->name = $name;
+        $tournament->startingDate = $startingDate;
 
-        $tournament->recordEvent(new TournamentInitialized($tournament));
+        $tournament->recordEvent(new TournamentWasInitialized($tournament));
 
         return $tournament;
     }
+
+
 }

@@ -1,10 +1,12 @@
 parameters:
     mowlkky.uow.class: Wanimo\Mowlkky\CoreBundle\Persistence\DoctrineUnitOfWork
+    mowlkky.repository.tournament.class:  Wanimo\Mowlkky\CoreBundle\Repository\Doctrine\TournamentRepository
     mowlkky.repository.user.class:  Wanimo\Mowlkky\CoreBundle\Repository\Doctrine\UserRepository
     mowlkky.command_bus.class:  Wanimo\Mowlkky\CoreBundle\Command\Bus
     mowlkky.command_bus_validator.class:  Wanimo\Mowlkky\CoreBundle\Command\BusWithValidation
     mowlkky.command_bus_transactional.class:  Wanimo\Mowlkky\CoreBundle\Command\TransactionalBus
-    mowlkky.command.register_user_handler.class: Wanimo\Mowlkky\CoreDomain\User\RegisterUserHandler
+    mowlkky.command.register_user_handler.class: Wanimo\Mowlkky\CoreDomain\User\Registration\RegisterUserHandler
+    mowlkky.command.initialize_tournament_handler.class: Wanimo\Mowlkky\CoreDomain\Tournament\Initialization\InitializeNewTournamentHandler
     mowlkky.password_encoder.class: Wanimo\Mowlkky\CoreBundle\Security\SymfonyPasswordEncoderAdapter
     mowlkky.concrete_password_encoder.class: Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder
     mowlkky.uuid_generator.class: Wanimo\Mowlkky\CoreBundle\UuidGeneratorAdapter
@@ -18,6 +20,10 @@ services:
         arguments:    ['@doctrine.orm.default_entity_manager']
 
     # Repositories
+    mowlkky.repository.tournament:
+        class:        '%mowlkky.repository.tournament.class%'
+        arguments:    ['@doctrine.orm.default_entity_manager']
+
     mowlkky.repository.user:
         class:        '%mowlkky.repository.user.class%'
         arguments:    ['@doctrine.orm.default_entity_manager']
@@ -42,7 +48,14 @@ services:
             - '@mowlkky.uuid_generator'
             - '@mowlkky.password_encoder'
         tags:
-            - { name: mowlkky.command_handler, command: 'Wanimo\Mowlkky\CoreDomain\User\RegisterUserCommand' }
+            - { name: mowlkky.command_handler, command: 'Wanimo\Mowlkky\CoreDomain\User\Registration\RegisterUserCommand' }
+
+    mowlkky.command.initialize_tournament_handler:
+        class: '%mowlkky.command.initialize_tournament_handler.class%'
+        arguments:
+            - '@mowlkky.repository.tournament'
+            - '@mowlkky.repository.user'
+            - '@mowlkky.uuid_generator'
 
     # Security
     mowlkky.security.user_authentication_provider:

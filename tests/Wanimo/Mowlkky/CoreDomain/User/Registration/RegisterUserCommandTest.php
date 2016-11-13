@@ -1,11 +1,10 @@
 <?php
 
-namespace Tests\Wanimo\Mowlkky\CoreDomain\User;
+namespace Tests\Wanimo\Mowlkky\CoreDomain\User\Registration;
 
 use Faker;
-use Wanimo\Mowlkky\CoreDomain\User\RegisterUserCommand;
+use Wanimo\Mowlkky\CoreDomain\User\Registration\RegisterUserCommand;
 use Wanimo\Mowlkky\CoreDomain\User\Role;
-use Wanimo\Mowlkky\CoreDomain\User\UserId;
 
 class RegisterUserCommandTest
 {

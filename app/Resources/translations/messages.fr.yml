@@ -28,6 +28,7 @@ back:
             home: Accueil
             tournaments: Gestion des tournois
             users: Gestion des utilisateurs
-    tournament_index:
-        title: Gestion des tournois
-        h1: Gestion des tournois
+    tournament:
+        index:
+            title: Gestion des tournois
+            h1: Gestion des tournois

@@ -4,7 +4,7 @@ namespace Tests\Wanimo\Mowlkky\CoreDomain\Tournament;
 
 use Faker;
 use Tests\Wanimo\Mowlkky\CoreDomain\User\UserTest;
-use Wanimo\Mowlkky\CoreDomain\Tournament\Event\TournamentInitialized;
+use Wanimo\Mowlkky\CoreDomain\Tournament\Initialization\TournamentWasInitialized;
 use Wanimo\Mowlkky\CoreDomain\Tournament\Name;
 use Wanimo\Mowlkky\CoreDomain\Tournament\Tournament;
 use Wanimo\Mowlkky\CoreDomain\Tournament\TournamentId;
@@ -21,31 +21,34 @@ class TournamentTest extends \PHPUnit_Framework_TestCase
     {
         $faker = Faker\Factory::create();
 
-        $testData = [
-            'name' => $faker->email,
-            'creator' => UserTest::createStandardTestInstance(),
-            'dateStart' => $faker->dateTimeThisMonth,
-            'id' => $faker->uuid
-        ];
+        $id = new TournamentId($faker->uuid);
+        $creator = UserTest::createStandardTestInstance();
+        $name = new Name($faker->name);
+        $startingDate =  $faker->dateTimeBetween('now', '+6 months');
 
-        $tournament = self::createStandardTestInstance($testData);
+        $tournament = Tournament::initializeNewTournament($id, $creator, $name, $startingDate);
 
         $this->assertInstanceOf(Tournament::class, $tournament);
 
-        $this->assertEquals($testData['name'], (string) $tournament->getName());
-        $this->assertEquals($testData['creator'], $tournament->getCreator());
-        $this->assertEquals($testData['id'], (string) $tournament->getId());
-        $this->assertEquals($testData['dateStart'], $tournament->getStartDate());
+        $this->assertEquals($name, $tournament->getName());
+
+        $this->assertInstanceOf(TournamentId::class, $tournament->getId());
+        $this->assertEquals($id, $tournament->getId()->getValue());
+
+        $this->assertInstanceOf(Name::class, $tournament->getName());
+        $this->assertEquals($name, $tournament->getName()->getValue());
+
+        $this->assertInstanceOf(\DateTime::class, $tournament->getStartingDate());
+        $this->assertEquals($startingDate, $tournament->getStartingDate());
 
         $this->assertCount(1, $tournament->getRecordedEvents());
-        $this->assertInstanceOf(TournamentInitialized::class, $tournament->getRecordedEvents()[0]);
+        $this->assertInstanceOf(TournamentWasInitialized::class, $tournament->getRecordedEvents()[0]);
     }
 
     /**
      * Create a standard instance with random values for tests.
      *
      * @param array $testData Array to force some attribute values. A random one is set if not defined.
-     *
      * @return Tournament
      */
     public static function createStandardTestInstance(array $testData = [])
@@ -53,15 +56,15 @@ class TournamentTest extends \PHPUnit_Framework_TestCase
         $faker = Faker\Factory::create();
 
         $id = array_key_exists('id', $testData) ? $testData['id'] : $faker->uuid;
-        $creator = array_key_exists('creator', $testData) ? $testData['creator'] : null;
-        $name = array_key_exists('name', $testData) ? $testData['name'] : $faker->title;
-        $dateStart = array_key_exists('dateStart', $testData) ? $testData['dateStart'] : $faker->dateTimeThisMonth;
+        $creator = array_key_exists('creator', $testData) ? $testData['creator'] : UserTest::createStandardTestInstance();
+        $name = array_key_exists('name', $testData) ? $testData['name'] : sprintf('%s Tournament', $faker->monthName);
+        $startingDate = array_key_exists('startingDate', $testData) ? $testData['startingDate'] : $faker->dateTimeBetween('now', '+6 months');
 
         $tournament = Tournament::initializeNewTournament(
             new TournamentId($id),
             $creator,
-            $dateStart,
-            new Name($name)
+            new Name($name),
+            $startingDate
         );
 
         return $tournament;

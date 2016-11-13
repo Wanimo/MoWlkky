@@ -4,7 +4,7 @@ namespace Tests\Wanimo\Mowlkky\CoreBundle\Repository\InMemory;
 
 use Tests\Wanimo\Mowlkky\CoreBundle\FakeServiceContainer;
 use Wanimo\Mowlkky\CoreBundle\Command\Bus;
-use Wanimo\Mowlkky\CoreDomain\User\RegisterUserCommand;
+use Wanimo\Mowlkky\CoreDomain\User\Registration\RegisterUserCommand;
 
 /**
  * Test class for the default command bus
@@ -12,9 +12,9 @@ use Wanimo\Mowlkky\CoreDomain\User\RegisterUserCommand;
 class BusTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test for the find method.
+     * Test for the addCommandMapping method.
      */
-    public function testFindOneByEmail()
+    public function testAddCommandMapping()
     {
         // Create mocks & stubs
         $serviceId = 'my_fake_register_user_handler_id';

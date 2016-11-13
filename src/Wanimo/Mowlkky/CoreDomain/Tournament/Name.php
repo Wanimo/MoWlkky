@@ -21,7 +21,7 @@ final class Name
     /**
      * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }

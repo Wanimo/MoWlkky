@@ -7,7 +7,7 @@ Wanimo\Mowlkky\CoreDomain\Tournament\Tournament:
             type: tournament_id
 
     fields:
-        startDate:
+        startingDate:
             type: datetimetz
             column: start_date
         creationDate:

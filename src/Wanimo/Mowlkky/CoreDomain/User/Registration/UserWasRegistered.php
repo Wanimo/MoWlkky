@@ -1,6 +1,6 @@
 <?php
 
-namespace Wanimo\Mowlkky\CoreDomain\User\Event;
+namespace Wanimo\Mowlkky\CoreDomain\User\Registration;
 
 use Wanimo\Mowlkky\CoreDomain\AggregateId;
 use Wanimo\Mowlkky\CoreDomain\Event\DomainEvent;

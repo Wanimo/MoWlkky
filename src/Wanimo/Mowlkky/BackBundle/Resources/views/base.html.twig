@@ -3,7 +3,7 @@
 {% block title %}{{ 'back.index.title'|trans() }}{% endblock %}
 
 {% block body %}
-    <div class="container" id="backIndexPage">
+    <div class="container">
         <h1>{{ 'back.index.h1'|trans() }}</h1>
 
         <ul>
@@ -11,5 +11,9 @@
             <li><a href="{{ path('back_tournament_index') }}">{{ 'back.index.menu.tournaments'|trans() }}</a></li>
             <li><a href="#">{{ 'back.index.menu.users'|trans() }}</a></li>
         </ul>
+
+        <div id="{% block pageId %}{% endblock %}">
+            {% block adminBody %}{% endblock %}
+        </div>
     </div>
 {% endblock %}

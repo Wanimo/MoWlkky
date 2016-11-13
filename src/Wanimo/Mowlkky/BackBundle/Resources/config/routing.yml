@@ -4,4 +4,4 @@ back_index:
 
 back_tournament_index:
     path:     /tournois
-    defaults: { _controller: mowlkky.controller.back.tournament_index:indexAction }
+    defaults: { _controller: mowlkky.controller.back.tournament.index:indexAction }

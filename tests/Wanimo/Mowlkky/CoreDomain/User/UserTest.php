@@ -3,7 +3,7 @@
 namespace Tests\Wanimo\Mowlkky\CoreDomain\User;
 
 use Wanimo\Mowlkky\CoreDomain\User\Email;
-use Wanimo\Mowlkky\CoreDomain\User\Event\UserWasRegistered;
+use Wanimo\Mowlkky\CoreDomain\User\Registration\UserWasRegistered;
 use Wanimo\Mowlkky\CoreDomain\User\Identity;
 use Wanimo\Mowlkky\CoreDomain\User\Password\EncodedPassword;
 use Wanimo\Mowlkky\CoreDomain\User\Password\PasswordEncoder;

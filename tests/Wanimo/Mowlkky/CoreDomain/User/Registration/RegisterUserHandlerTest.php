@@ -1,11 +1,12 @@
 <?php
 
-namespace Tests\Wanimo\Mowlkky\CoreDomain\User;
+namespace Tests\Wanimo\Mowlkky\CoreDomain\User\Registration;
 
 use Tests\Wanimo\Mowlkky\CoreDomain\FakeUuidGenerator;
+use Tests\Wanimo\Mowlkky\CoreDomain\User\FakePasswordEncoder;
 use Wanimo\Mowlkky\CoreBundle\Repository\InMemory\UserRepository;
 use Wanimo\Mowlkky\CoreDomain\User\NotUniqueEmailException;
-use Wanimo\Mowlkky\CoreDomain\User\RegisterUserHandler;
+use Wanimo\Mowlkky\CoreDomain\User\Registration\RegisterUserHandler;
 use Wanimo\Mowlkky\CoreDomain\User\User;
 use Faker;
 

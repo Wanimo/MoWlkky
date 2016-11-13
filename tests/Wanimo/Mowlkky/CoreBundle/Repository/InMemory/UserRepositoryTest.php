@@ -5,10 +5,7 @@ namespace Tests\Wanimo\Mowlkky\CoreBundle\Repository\InMemory;
 use Tests\Wanimo\Mowlkky\CoreDomain\User\UserTest;
 use Wanimo\Mowlkky\CoreBundle\Repository\InMemory\UserRepository;
 use Wanimo\Mowlkky\CoreDomain\User\Email;
-use Wanimo\Mowlkky\CoreDomain\User\RegisterUserCommand;
-use Wanimo\Mowlkky\CoreDomain\User\Role;
 use Wanimo\Mowlkky\CoreDomain\User\User;
-use Wanimo\Mowlkky\CoreDomain\User\UserId;
 use Faker;
 
 /**

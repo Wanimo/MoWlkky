@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Wanimo\Mowlkky\CoreDomain\User\Email;
-use Wanimo\Mowlkky\CoreDomain\User\RegisterUserCommand;
+use Wanimo\Mowlkky\CoreDomain\User\Registration\RegisterUserCommand;
 use Wanimo\Mowlkky\CoreDomain\User\Role;
 
 /**

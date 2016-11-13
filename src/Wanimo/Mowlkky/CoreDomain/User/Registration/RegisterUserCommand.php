@@ -1,10 +1,12 @@
 <?php
 
-namespace Wanimo\Mowlkky\CoreDomain\User;
+namespace Wanimo\Mowlkky\CoreDomain\User\Registration;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
 use Wanimo\Mowlkky\CoreDomain\Command\Command;
+use Wanimo\Mowlkky\CoreDomain\User\Identity;
+use Wanimo\Mowlkky\CoreDomain\User\Role;
 use Wanimo\Mowlkky\CoreDomain\Validation\ConstraintsCollection;
 use Wanimo\Mowlkky\CoreDomain\Validation\Validatable;
 

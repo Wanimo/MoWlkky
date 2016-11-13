@@ -4,9 +4,8 @@ namespace Wanimo\Mowlkky\CoreDomain\User;
 
 use DateTime;
 use Wanimo\Mowlkky\CoreDomain\AggregateRoot;
-use Wanimo\Mowlkky\CoreDomain\User\Event\UserWasRegistered;
+use Wanimo\Mowlkky\CoreDomain\User\Registration\UserWasRegistered;
 use Wanimo\Mowlkky\CoreDomain\User\Password\EncodedPassword;
-use Wanimo\Mowlkky\CoreDomain\User\Password\PasswordEncoder;
 
 class User extends AggregateRoot
 {

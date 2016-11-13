@@ -1,6 +1,6 @@
 <?php
 
-namespace Wanimo\Mowlkky\BackBundle\Controller;
+namespace Wanimo\Mowlkky\BackBundle\Controller\Tournament;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Controller for backend index
+ * Controller for the tournament management index
  * @package Wanimo\Mowlkky\BackBundle\Controller
  */
 class IndexController extends Controller
@@ -34,7 +34,7 @@ class IndexController extends Controller
     public function indexAction(Request $request)
     {
         return $this->templating->renderResponse(
-            'BackBundle:Index:index.html.twig',
+            'BackBundle:Tournament:index.html.twig',
             []
         );
     }

@@ -1,8 +1,16 @@
 <?php
 
-namespace Wanimo\Mowlkky\CoreDomain\User;
+namespace Wanimo\Mowlkky\CoreDomain\User\Registration;
+
+use Wanimo\Mowlkky\CoreDomain\User\Email;
+use Wanimo\Mowlkky\CoreDomain\User\Identity;
+use Wanimo\Mowlkky\CoreDomain\User\NotUniqueEmailException;
 use Wanimo\Mowlkky\CoreDomain\User\Password\PasswordEncoder;
 use Wanimo\Mowlkky\CoreDomain\User\Password\RawPassword;
+use Wanimo\Mowlkky\CoreDomain\User\Role;
+use Wanimo\Mowlkky\CoreDomain\User\User;
+use Wanimo\Mowlkky\CoreDomain\User\UserId;
+use Wanimo\Mowlkky\CoreDomain\User\UserRepository;
 use Wanimo\Mowlkky\CoreDomain\UuidGenerator;
 
 /**
