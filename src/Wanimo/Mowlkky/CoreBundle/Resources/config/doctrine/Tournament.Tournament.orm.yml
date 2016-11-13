@@ -12,7 +12,7 @@ Wanimo\Mowlkky\CoreDomain\Tournament\Tournament:
             column: start_date
         creationDate:
             type: datetimetz
-            column: registration_date
+            column: creation_date
         lastUpdateDate:
             type: datetimetz
             column: last_update_date

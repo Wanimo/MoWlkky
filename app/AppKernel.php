@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Wanimo\Mowlkky\FrontBundle\FrontBundle(),
             new Wanimo\Mowlkky\BackBundle\BackBundle(),
             new Wanimo\Mowlkky\CoreBundle\CoreBundle(),
+            new KPhoen\RulerZBundle\KPhoenRulerZBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

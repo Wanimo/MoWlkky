@@ -2,8 +2,8 @@
 
 namespace Wanimo\Mowlkky\CoreBundle\Repository\Doctrine;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Wanimo\Mowlkky\CoreDomain\User\Email;
 use Wanimo\Mowlkky\CoreDomain\User\User;
 use Wanimo\Mowlkky\CoreDomain\User\UserCollection;
@@ -16,23 +16,23 @@ use Wanimo\Mowlkky\CoreDomain\User\UserRepository as UserRepositoryInterface;
 class UserRepository implements UserRepositoryInterface
 {
     /**
-     * @var ObjectRepository
+     * @var EntityRepository
      */
     private $source;
 
     /**
-     * @var ObjectManager
+     * @var EntityManager
      */
-    private $objectManager;
+    private $entityManager;
 
     /**
      * UserRepository constructor.
-     * @param ObjectManager $om
+     * @param EntityManager $em
      */
-    public function __construct(ObjectManager $om)
+    public function __construct(EntityManager $em)
     {
-        $this->objectManager = $om;
-        $this->source = $om->getRepository(User::class);
+        $this->entityManager = $em;
+        $this->source = $em->getRepository(User::class);
     }
 
     /**
@@ -67,7 +67,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function add(User $user): UserRepositoryInterface
     {
-        $this->objectManager->persist($user);
+        $this->entityManager->persist($user);
 
         return $this;
     }
@@ -78,7 +78,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function remove(User $user): UserRepositoryInterface
     {
-        $this->objectManager->remove($user);
+        $this->entityManager->remove($user);
 
         return $this;
     }

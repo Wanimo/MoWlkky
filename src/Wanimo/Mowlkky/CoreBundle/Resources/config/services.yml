@@ -12,6 +12,7 @@ parameters:
     mowlkky.uuid_generator.class: Wanimo\Mowlkky\CoreBundle\UuidGeneratorAdapter
     mowlkky.security.user_authentication_provider.class: Wanimo\Mowlkky\CoreBundle\Security\RepositoryUserAuthenticationProvider
     mowlkky.security.interactive_login_listener.class: Wanimo\Mowlkky\BackBundle\Event\AuthenticationListener
+    mowlkky.specification.processor.class: Wanimo\Mowlkky\CoreBundle\Specification\RulerZAdaptor
 
 services:
 
@@ -22,7 +23,7 @@ services:
     # Repositories
     mowlkky.repository.tournament:
         class:        '%mowlkky.repository.tournament.class%'
-        arguments:    ['@doctrine.orm.default_entity_manager']
+        arguments:    ['@doctrine.orm.default_entity_manager', '@mowlkky.specification.processor']
 
     mowlkky.repository.user:
         class:        '%mowlkky.repository.user.class%'
@@ -68,6 +69,16 @@ services:
         arguments: ['@mowlkky.uow', '@mowlkky.repository.user']
         tags:
             - { name: kernel.event_listener, event: security.interactive_login, method: onAuthenticationSuccess }
+
+    # Specifications
+    mowlkky.specification.processor:
+        class: '%mowlkky.specification.processor.class%'
+        arguments: ['@rulerz']
+
+    mowlkky.specification.doctrine_like_operator:
+        class: 'Wanimo\Mowlkky\CoreBundle\Specification\Operator\Doctrine\Like'
+        tags:
+            - { name: rulerz.operator, executor: rulerz.executor.doctrine, operator: like, inline: true }
 
     # Common services
     mowlkky.concrete_password_encoder:

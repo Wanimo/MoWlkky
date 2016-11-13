@@ -70,3 +70,9 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+kphoen_rulerz:
+    cache: '%kernel.cache_dir%/rulerz'
+    debug: '%kernel.debug%'
+    executors:
+        doctrine: true

@@ -5,7 +5,29 @@
 {% block body %}
     <div class="container" id="backTournamentIndexPage">
         <h1>{{ 'back.tournament.index.h1'|trans() }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tournament in tournaments %}
+                <tr>
+                    <td>
+                        {{ tournament.id.value }}
+                    </td>
+                    <td>
+                        {{ tournament.name.value }}
+                    </td>
+                    <td>
 
-
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

@@ -15,7 +15,7 @@ class TournamentCollection extends ArrayCollection
      */
     public function __construct(array $tournaments = [])
     {
-        foreach ($this->elements as $tournament) {
+        foreach ($tournaments as $tournament) {
             $this->addTournament($tournament);
         }
     }
@@ -26,7 +26,7 @@ class TournamentCollection extends ArrayCollection
      */
     public function addTournament(Tournament $tournament)
     {
-        $this->elements = $tournament;
+        $this->elements[] = $tournament;
 
         return $this;
     }

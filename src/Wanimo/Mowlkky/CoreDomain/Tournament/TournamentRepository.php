@@ -1,6 +1,7 @@
 <?php
 
 namespace Wanimo\Mowlkky\CoreDomain\Tournament;
+use Wanimo\Mowlkky\CoreDomain\Specification;
 
 /**
  * Repository for Tournament entity.
@@ -24,4 +25,10 @@ interface TournamentRepository
      * @return TournamentRepository
      */
     public function remove(Tournament $tournament): TournamentRepository;
+
+    /**
+     * @param Specification $specification
+     * @return TournamentCollection
+     */
+    public function match(Specification $specification): TournamentCollection;
 }

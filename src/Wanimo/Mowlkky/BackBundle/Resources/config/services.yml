@@ -10,4 +10,4 @@ services:
     # Tournaments management
     mowlkky.controller.back.tournament.index:
         class: Wanimo\Mowlkky\BackBundle\Controller\Tournament\IndexController
-        arguments: ['@templating']
+        arguments: ['@templating', '@mowlkky.repository.tournament']
